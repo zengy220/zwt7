@@ -448,13 +448,13 @@ class QuestionsearchController extends CommonController {
 		$count = M('score')->where("$condition")->count();//统计所有的条数。
 		$page = new \Org\Util\Page($count,22);//实例化分页模型  
 		$new_arr_all =M('score')->where("$condition")->limit($page->limit[0],$page->limit[1])->select();
-
-		// var_dump($new_arr_all);
+		// var_dump(22);exit;
 		// echo "<br>000";
 		// foreach ($new_arr_all as $ka => $va) {
 		// 	# code...
 		// 	explode($new_arr_all[$ka]['all_property'],'/');
 		// }
+		// echo "<br>";
 		$show = $page->show();//分页
 		//评分表导出功能
 		if(I('print')=='1'){
