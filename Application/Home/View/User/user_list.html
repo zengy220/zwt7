@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>客服系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+<style type="text/css">
+.table th,.table td {text-align:left}
+</style>
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="javascript:;" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a href="/User/user_list" class="tip-bottom">员工列表</a></div>
+  <!-- <h1>用户</h1> -->
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+   
+	<div class="span11"><a href="/Home/User/user_add" class="btn btn-success btn">新增员工</a>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>数据</h5>
+            </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th style="width:30px;">序号</th>
+                  <th>用户名</th>
+                  <th>所属组织</th>
+                  <th>所属角色</th>
+				  <th>真实姓名</th>
+                  <th>电话号码</th>
+        		  <th>所属客服/区域经理</th>
+                  <th>添加时间</th>
+                  <th>是否使用</th>
+        		  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+      			 <volist name="user_list" id="vs">
+                <tr>
+                  <td>{$i}</td>
+                  <td>{$vs.username}</td>
+                  <td>{$vs.company_name}</td>
+        		  <td>{$vs.role}</td>
+                  <td>{$vs.real_name}</td>
+                  <td>{$vs.tel}</td>
+        		  <td>{$vs.service}/{$vs.manager}</if></td>
+        		  <td>{$vs.addtime|date="Y-m-d",###}</td>
+       			  <td><if condition="$vs.is_use eq 0">禁用<else/>使用</if></td>
+  				  <td>
+          			<a href="/Home/User/user_edit/u/{$vs.user_Id}" class="btn btn-primary btn-mini">编辑</a> | 
+      				<a href="/Home/User/edit_pwd/u/{$vs.user_Id}" class="btn btn-primary btn-mini">重置密码</a> 
+          			<if condition="($vs.role eq '总部管理员') OR ($vs.role eq '超级管理员') OR ($vs.role eq '分公司管理员')"> 
+          			<else/>
+       				<a href="/Home/User/user_del/u/{$vs.user_Id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除!')==false)return  false; ">删除</a>
+   					</if>
+        		  </td>	  
+                </tr>
+      			</volist>
+				<tr>
+				  <td colspan="13" align="center" style="text-align:center;">
+					<?php echo $dataPage?> 
+				  </td>
+				</tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		  </div>
+  
+</div></div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+<script src="/Public/js/excanvas.min.js"></script> 
+<script src="/Public/js/jquery.min.js"></script> 
+<script src="/Public/js/jquery.ui.custom.js"></script> 
+<script src="/Public/js/bootstrap.min.js"></script> 
+<script src="/Public/js/jquery.flot.min.js"></script> 
+<script src="/Public/js/jquery.flot.resize.min.js"></script> 
+<script src="/Public/js/jquery.peity.min.js"></script> 
+<script src="/Public/js/fullcalendar.min.js"></script> 
+<script src="/Public/js/matrix.js"></script> 
+<script src="/Public/js/matrix.dashboard.js"></script> 
+<script src="/Public/js/jquery.gritter.min.js"></script> 
+<script src="/Public/js/matrix.interface.js"></script> 
+<script src="/Public/js/matrix.chat.js"></script> 
+<script src="/Public/js/jquery.validate.js"></script> 
+<script src="/Public/js/matrix.form_validation.js"></script> 
+<script src="/Public/js/jquery.wizard.js"></script> 
+<script src="/Public/js/jquery.uniform.js"></script> 
+<script src="/Public/js/select2.min.js"></script> 
+<script src="/Public/js/matrix.popover.js"></script> 
+<script src="/Public/js/jquery.dataTables.min.js"></script> 
+<script src="/Public/js/matrix.tables.js"></script>
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>

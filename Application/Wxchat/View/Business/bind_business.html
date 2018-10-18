@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+        <title>绑定商家</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta content="telephone=no" name="format-detection"/>
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/base2.css">
+        <script src="/Public/js/jquery.min.js"></script>
+	</head>	
+    <body>
+		<div class="appBody">
+			<div class="main-new flex1" >
+				<div class="bingd-box ml15 mr15 pos-r">
+				<form action="/Wxchat/Business/bind_business_result" method="get" name="frm" id="bind_submit">
+					<input type="hidden" name="openid" value="{$openid}" />
+					<input type="text" placeholder="请输入商家号" name="business_id" class="pl10 pr10 bradius3 f32px" id="shangjh"/>
+					<div class="clearfix bingd-btn mt20 f32px text-center"><span class=" sure bradius3" onClick="bdsure()">确定</span></div>
+				</form>
+				</div>
+			</div>
+			<div class="footer pt15 pb15  f30px">
+				<p class="pl15 pr15 f30px text-center color-b2">免费服务热线：4008837997</p>
+			</div>
+        </div>
+		
+        <script>
+			var isInit = false; 
+			function bdsure(){
+				var inputv=$("#shangjh").val();	
+				if (!isInit) { 
+					var erbox="<div class='er-box pl15 pr15'></div>"
+					$("body").append(erbox)	;
+					isInit = true;
+				}
+				if(inputv=="")
+				{  
+					$(".er-box").fadeIn();
+					$(".er-box").html("请输入商家号");
+					return false;
+				}
+
+				$.ajax({
+					type: "GET",
+					url: "/Wxchat/Business/ajax_business_check",
+					data: {inputv:inputv},
+					success: function (e) {
+						if(e==2){
+							$(".er-box").fadeIn("");
+							$(".er-box").html("此商家号已被绑定！");
+						}else if(e == 3){
+							$(".er-box").fadeIn("");
+							$(".er-box").html("商家号不存在！");
+						}else{
+							$("#bind_submit").submit();
+						}
+					},
+
+				});
+
+			}
+        </script>
+	</body>
+</html>

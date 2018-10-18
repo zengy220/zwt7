@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+        <head>
+        <meta>
+        <title>兑换单二维码</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/base2.css">
+        <script src="/Public/js/jquery.min2.js"></script>
+				
+		<script type="text/javascript">
+		
+        $(function () {
+            var ID = $("#orderno").val();//获取ID
+            setInterval(function () { 
+				GetStatus(ID) 
+			}, 
+			2000);//每两秒执行
+        });
+        function GetStatus(ID) {
+            $.ajax({
+                type: 'get',
+                url: "/Wxchat/Active/client_ajax/rd/" + Math.random(),
+                data: { ID: ID },
+                dataType: 'json',
+                success: function (result) {
+					//alert(result);exit;
+                    if (result=="1") {
+												//返回1没有兑换成功
+                    } else if (result == "2") {
+												//返回2订单兑换成功 
+                        window.location.href = '/Wxchat/Active/client_succeed/orderno/'+ID;//跳转成功网址
+                    } 
+                    return false;
+                }
+            });
+
+        }
+		
+		
+		
+
+		</script>
+        </head>
+
+        <body style="background:#a02329">
+                <div class="color-fff f30px text-center pt20 pb20">请向商家出示二维码兑换商品</div>
+                <div class="erweima-box white-bj bradius5 ml15 mr15 pt15 pb15">
+                <p class="text-center p1 line-h50">介贷网,做最好的槟榔</p>
+                <img src="/Wxchat/Active/showErweima">
+				
+				<input type="hidden" id="orderno" value="{$orderno}"/>
+				
+                <div class="ml15 mr15 mt30 f28px line-h50">
+                <p>商品名称:<span>{$name}</span></p>
+                <p>兑换数量:<span>1</span></p>
+                <p>使用积分:<span>{$points}</span></p>
+                <p>兑换单号:<span>{$orderno}</span></p>
+                </div>
+                </div>
+	
+        </body>
+		
+</html>
+

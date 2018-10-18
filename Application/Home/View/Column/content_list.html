@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>介贷网后台管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-style.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-media.css" />
+    <link rel="stylesheet" href="/Public/css/uniform.css" />
+    <link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+    <style type="text/css">
+        .table th,.table td {text-align:left}
+    </style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="javascript:;" class="tip-bottom">菜单管理</a> <a href="#" class="current">菜单列表</a> </div>
+    </div>
+    <div class="container-fluid">
+
+
+
+        <div class="row-fluid">
+            <div class="span11">
+                <hr>
+
+                <form method="post" action="/{$Think.MODULE_NAME}/Column/content_list">
+                    <div class="form-group">
+                        <select style="width:150px;"  class="form-control" name="col_id">
+                            栏目筛选<option value="">请选择</option>
+                            <foreach name="col_menu" item="vo">
+                                <option value="{$vo.id}" <if condition="$vo.id eq $col_id">selected='selected'"</if>>{$vo.name}</option>
+                            </foreach>
+                        </select>&nbsp;&nbsp;&nbsp;
+                        <input name="c_status" type="checkbox" value="1"  <if condition="$c_status eq 1">checked</if> />隐藏禁用栏目
+
+                        <input name="status" type="checkbox" value="1"   <if condition=" $status eq 1 ">checked</if>  />显示隐藏内容
+
+
+                        &nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-success">查询</button>
+                    <a href="/{$Think.MODULE_NAME}/Column/add_content/" class="btn btn-success btn" style="float: right">添加栏目内容</a>
+                    </div>
+                </form>
+
+
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>栏目内容</h5>
+                    </div>
+                    <div class="widget-content ">
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th style="width:40%;">标题</th>
+                                <th>发布日期</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="content_list" id="vs">
+                                <tr>
+                                    <td>{$vs.title}<if condition="$vs.status eq 0">&nbsp;<img src="/Public/img/unshow.png"></if><if condition="$vs.istop eq 1">&nbsp;<img src="/Public/img/top.png"></if></td>
+                                    <td>{$vs.create_time}</td>
+                                    <td>
+                                        <a href="/{$Think.MODULE_NAME}/Column/content_edit_index/u/{$vs.id}/o/edit/" class="btn btn-primary btn-mini">修改</a> |
+                                        <a href="/{$Think.MODULE_NAME}/Column/content_del/u/{$vs.id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除 {$vs.title}!')==false)return  false; ">删除</a>
+
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div></div>
+    <!--end-main-container-part-->
+
+    <!--Footer-part-->
+    <include file="Index:foot" />
+    <!--end-Footer-part-->
+
+
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/client.js"></script>
+    <script src="/Public/js/matrix.js"></script>
+    <script src="/Public/js/timepicker/WdatePicker.js"></script>
+    <script src="/Public/js/base.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+	<!-- 兑换成功商家收到的提示页面 -->
+        <head>
+        <meta>
+        <title>兑换成功</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/base2.css">
+        <script src="/Public/js/jquery.min2.js"></script>
+        </head>
+
+        <body>
+        <div class="appBody">
+        <div class="main-new flex1" >
+        <h2 class="f40px color-red1 text-center pt20 pb20 mt30">兑换成功！</h2>
+        <div class="ml15 mr15 mt10 f28px line-h50">
+		
+        <p>兑换单号：<span>{$corderno}</span></p>
+        <p>兑换商品：<span>{$cname}</span></p>
+        <p>兑换数量：<span>1</span></p>
+        <!-- <p>使用积分：<span>{$cpoints}</span></p> -->
+        <p>兑换时间：<span>
+		{$time|date="Y-m-d H:i:s",###}
+		</span></p>
+        </div>
+        </div>
+        <div class="text-center pt10 pb10"><img src="/Public/images/logo.png" style="width:2.20rem"></div>
+        </div>
+</body>
+</html>
+

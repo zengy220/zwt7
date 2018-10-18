@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>介贷网官网</title>
+<link href="/Public/web/css/common.css" rel="stylesheet" type="text/css" />
+<link href="/Public/web/css/style.css" rel="stylesheet" type="text/css" />
+<script  type="text/JavaScript" src="/Public/web/js/jquery-1.11.1.min.js"></script>
+<script  type="text/JavaScript" src="/Public/web/js/common.js"></script>
+</head>
+
+<body>
+<include file="Index:header" />
+   
+   <!--banner-->
+   <div class="columnSpace">
+	   <div  class="c-poi"  onclick=" tourl('{$adimg.url}')"  <if condition="$adimg.img neq '' ">style="background:url({$adimg.img}) <else/>style="background:url(/Public/web/images/busi_banner.jpg) </if> center center; width:100%; height:229px; ">
+	   <div class="w1100 rel" style="height:229px">
+   		<p class="abs" style="height:2px; width:100%; background:#a0232a; left:0; bottom:0"></p>
+   </div>
+   </div>
+   </div>
+   <!--banner-->
+   <div class="w1100">
+   <div class="box_main fn-clear">
+   <div class="box_main_sub fn-left">
+	   <dl>
+		   <dt><img src="{$pcolInfo.thumb}"></dt>
+		   <foreach name ="sunCol" key="key" item="val"  >
+			   <dd <if condition="$val.id eq $id">class="active"</if>  id="tags{$key+1}"   ><a href="{$val.col_url}/id/{$val.id}/ptpcode/{$ptpcode}"><span>{$val.name}</span> </a></dd>
+		   </foreach>
+	   </dl>
+   </div>
+   <div class="box_main_sub2 fn-right ">
+	   <div class="box-cont-sub color-99">您现在的位置：<a href="/{$Think.MODULE_NAME}/" class="color-99">首页</a> > {$pcolInfo.name} > <span class="color-a0">{$scolInfo.name}</span></div>
+ 	<div class="mid-text rel" id="business-box">
+  		<form action="/{$Think.MODULE_NAME}/about/join_us" method="post" id="form1">
+		<ul class="business-list">
+  			<li><label><span class="color-red">*</span>申请人：</label>
+  			<input type="text" name="name" class="fw sq-input checkwp" id="sq-people" >
+  			<b>请填写申请人！</b>
+  			</li>
+  			<li><label><span class="color-red">*</span>申请区域：</label>
+  			<input type="text"  name="area" class="fw sq-input checkwp" id="aq-area" >
+  			<b>请填写申请区域！</b>
+  			</li>
+  			<li><label><span class="color-red">*</span>手机号码：</label>
+  			<input type="text"  name="tel" maxlength="11" class="fw sq-input phone" id="phone" >
+  			<b>请填写手机号码！</b>
+  			</li>
+  			<li class="address-box"><label><span class="color-red">*</span>所在区域：</label>
+  				<select id="s_province" name="s_province" class="sq-input checkwp"></select>
+  			    <select id="s_city" name="s_city" class="sq-input checkwp"></select>
+			    <select id="s_county" name="s_county" class="sq-input checkwp"></select>
+			  <b>请填写所在区域！</b>  
+  			</li>
+  			<li><label><span class="color-red">*</span>详细地址：</label>
+  			<input type="text" name="address" class="fw sq-input checkwp" id="address" >
+  			 <b>请选择详细地址！</b>  
+  			</li>
+  			<li><label><span class="color-red">*</span>申请理由：</label>
+  			<textarea name="reason" class="fw sq-input checkwp" id="reason"></textarea>
+  			 <b>请填写申请理由！</b>  
+  			</li>
+  			<li><label>经营现状：</label>
+  			<textarea name="status" class="fw" placeholder="目前正在代理的产品、销售区域及销售情况"></textarea></li>
+  		</ul>
+		<a href="javascript:void(0);" id="busi-submit-btn" class="busi-submit-btn bradius4" ">提交申请</a>
+			</form>
+  	</div>
+   </div> 
+   </div>
+   </div>
+<include file="Index:footer" />
+   <script src="/Public/web/js/area.js"></script>
+   <script type="text/javascript">_init_area();</script>
+   <script src="/Public/web/js/business.js"></script>
+</body>
+</html>

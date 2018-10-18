@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<title>后台管理平台</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+<style>
+.public_menu{margin-left:10px;}
+</style>
+</head>
+<body>
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>首页</a><a href="/Home/User/roleList" class="current">角色列表</a> </div>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+	<?php
+	if($menu=="list")
+	{
+	?>
+	<a href="/Home/User/roleAdd/" class="btn btn-success btn">角色新增</a>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>数据</h5>
+            </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th style="width:28px;text-align:left;">序号</th>
+                  <th>角色名称</th>
+                  <!-- <th>角色身份</th> -->
+                  <th>角色编码</th>
+				  
+				  <th>角色类型</th>
+				  <th>状态</th>
+                  <th style="width:15%;text-align:left;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			   <volist name="roleList" id="vs">
+                <tr>
+                  <td>{$i}</td>
+				  <td>{$vs.role_name}</td>
+				  
+				 <!--  <td><if condition="$vs.role_position eq 0">系统管理员</if><if condition="$vs.role_position eq 1">区域经理</if><if condition="$vs.role_position eq 2">客服</if><if condition="$vs.role_position eq 3">业务员</if><if condition="$vs.role_position eq 4">财务</if></td> -->
+				  <td>{$vs.role_num}</td>
+                  <td><if condition="$vs.role_identity eq 0">总部角色<else/>分部角色</if>/<if condition=" $vs.role_type eq 0 ">系统角色<else />自定义角色</if></td>
+				  <td><if condition=" $vs.role_status eq 1 ">启用<else />禁用</if></td>
+				  
+				  <td style="width:15%;text-align:left;">
+					<a href="/Home/User/roleEdit/editId/{$vs.role_Id}" class="btn btn-primary btn-mini">编辑</a> 
+					<if condition=" $vs.role_type neq 0 ">| <a href="/Home/User/roleDel/delId/{$vs.role_Id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除!')==false)return  false; ">删除</a></if>
+					
+				  </td>
+				  
+                </tr>
+			   </volist>
+              </tbody>
+            </table>
+          </div>
+        </div>
+	<?php
+	}
+	else
+	{
+	?>
+     <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>{$menu_titles}</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="{$menu_from_url}" method="post" class="form-horizontal">
+		  
+            <div class="control-group">
+              <label class="control-label">名称 :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="角色名称" name="role_name" value="{$role.role_name}" <if condition="$role['type'] == 'edit'">readonly</if> style="width:300px;" />
+              </div>
+            </div>
+			
+			<div class="control-group">
+              <label class="control-label">编号 :</label>
+              <div class="controls">
+				
+                <!-- <input type="text" class="span11" placeholder="请输入两位数字" name="role_num" value="{$role.role_num}"  style="width:300px;"  <if condition="$role['type'] == 'edit'">readonly</if>/> -->
+				
+				<input type="text" class="span11" placeholder="请输入两位数字"  name="role_num" value="{$role.role_num}" id="role_num" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " maxlength="2" style="width:208px;" <if condition="$role['type'] == 'edit'">readonly</if>/> &nbsp;&nbsp;&nbsp;  <if condition="$role['type'] == 'add'"><input type="button" name="点击" onclick="generate_number();" value="点击生成"/></if>
+				
+              </div>
+            </div>
+
+	
+			<div class="control-group">
+              <label class="control-label">类型 :</label>
+              <div class="controls">
+			    <label>
+                  <input type="radio" name="role_identity" value='0' <if condition=" $role.role_identity eq 0 ">checked</if>/>
+                  总部角色&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                  <input type="radio" name="role_identity" value='1' <if condition=" $role.role_identity eq 1 ">checked</if>/>
+                  分部角色
+				</label>
+				
+              </div>
+            </div>
+			
+			
+			<div class="control-group">
+              <label class="control-label">登录状态 :</label>
+              <div class="controls">
+			    <label>
+				  <input type="radio" name="role_status" value='1' <if condition=" $role.role_status eq 1 or $role.role_status eq null ">checked</if>/>
+                  使用&nbsp;&nbsp;&nbsp;&nbsp;
+				
+                  <input type="radio" name="role_status" value='0' <if condition=" $role.role_status eq 0 and $role.role_status neq null ">checked</if>/>
+                  禁用</label>
+				
+              </div>
+            </div>
+			
+            <div class="control-group">
+              <label class="control-label">选择权限 :</label>
+              <div class="controls">
+			    <volist name="menu_all" id="vs">
+					 <input type='checkbox' name='show_list_{$vs.menu_Id}' <if condition="text_role($role['role_Id'],$vs['menu_Id']) eq true">checked="checked"</if> value="{$vs.menu_Id}" ><span>{$vs.menu_name}</span> <br>
+					<volist name="vs.son" id="vf">
+						&nbsp;&nbsp;<span class="public_menu">--{$vf.menu_name}:</span>
+						<span>
+							<input type='checkbox' name='show_list_{$vf.menu_Id}' <if condition=" text_role($role['role_Id'],$vf['menu_Id']) eq true">checked="checked"</if> value="{$vf.menu_Id}">
+						</span><br> 
+						<volist name="vf.grandson" id="vd">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="public_menu">----{$vd.menu_name}:</span>
+							<span>
+								<input type='checkbox' name='show_list_{$vd.menu_Id}' <if condition=" text_role($role['role_Id'],$vd['menu_Id']) eq true">checked="checked"</if> value="{$vd.menu_Id}">
+							</span><br>
+						</volist>
+					</volist>
+				</volist>
+				 <br>
+              </div>
+            </div>
+            <div class="form-actions" style="margin:0 106px;">
+			  <input type="hidden" name="roleId" value="{$role.role_Id}"/>
+			  <input type="hidden" name="type" value="{$role.type}"/>
+              <button type="submit" class="btn btn-success">{$role.menu_titles_button}</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			  <button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+          </form>
+        </div>
+      </div>
+        <?php
+	}
+	?>
+  
+</div></div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+<script src="/Public/js/jquery.min.js"></script>
+<script>
+//产生随机数 
+function GetRandomNum(Min,Max)
+{   
+	var Range = Max - Min;   
+	var Rand = Math.random();   
+	return(Min + Math.round(Rand * Range));   
+}   
+
+//随机业务号的生成
+function generate_number(){
+	var random_number=GetRandomNum(01,99);
+	$("#role_num").val(random_number);
+}
+
+</script>
+
+<script src="/Public/js/matrix.js"></script> 
+</script>
+</body>
+</html>

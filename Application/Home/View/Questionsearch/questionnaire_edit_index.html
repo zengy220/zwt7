@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-style.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-media.css" />
+    <link rel="stylesheet" href="/Public/css/uniform.css" />
+    <link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+    <style type="text/css">
+        .table th,.table td {text-align:left}
+    </style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="javascript:;" class="tip-bottom">问卷调查设置</a> <a href="#" class="current">{$col_title}</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>{$col_title}</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="{$col_from_url}" method="post" class="form-horizontal" onsubmit="return check();"  enctype="multipart/form-data">
+                            <div class="control-group">
+                                <label class="control-label">问卷调查名称 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11"  name="name" id="name" value="{$col_data.name}" style="width:220px;"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label">状态 :</label>
+                              <div class="controls">
+                                <label>
+                                  <input type="radio" name="status" value='0' <if condition=" $col_data.status eq 0 ">checked</if>/>
+                                  禁用</label>
+                                <label>
+                                  <input type="radio" name="status" value='1' <if condition=" $col_data.status eq 1 ">checked</if>/>
+                                  使用</label>
+                   
+                              </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">问卷调查排序 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" placeholder="序号越小越靠前" name="sort" id="sort" value="{$col_data.sort}" style="width:220px; "  onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">问卷属性 :</label>
+                                <div class="controls">
+                                    <foreach name="property" item='vo'>
+                                        
+                                        <input type="text" readonly="readonly" class="span11" style="width:220px; " value="{$vo.questions}" name="{$vo.id}">
+                                    </foreach>
+                                </div>
+                            </div>
+                            
+
+                           <!--  <div style="width: 500px; margin-left: 200px;">
+                                <div id="question" >
+                                    <if condition="$o eq edit">
+                                        <foreach name='property' item='vo'>
+                                            <input type="text" name="que[]" value='{$vo['questions']}'>
+                                        </foreach>
+                                    </if>
+                                    <if condition="$o eq null">
+                                        <input id="btnAddInput" type="button" value="新增属性" onclick="AddInput()" /><br />
+                                    </if>
+                                </div>
+                            </div> -->
+                        
+                    <input type="hidden" name="u" value="{$u}" />
+                    <input type="hidden" name="o" value="{$col}" />
+
+                    <div class="form-actions" style="margin:0 180px;">
+                        <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+        </div></div>
+    <!--end-main-container-part-->
+
+    <!--Footer-part-->
+    <include file="Index:foot" />
+    <!--end-Footer-part-->
+
+
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/client.js"></script>
+    <script src="/Public/js/matrix.js"></script>
+    <script src="/Public/js/timepicker/WdatePicker.js"></script>
+    <script src="/Public/js/base.js"></script>
+    <script type="text/javascript">
+    var count = 1;
+
+    //用来判断是删除 还是增加按钮 以便count值进行计算
+    function checkCount(boolOK, coun) {
+       if (boolOK == true) {
+            return count++;
+        }
+       else {
+        count--;
+     }
+    }
+    //添加一个input标签 同时也对它的ID和Name进行赋值。
+    function AddInput() {
+    countAA = checkCount(true, count);
+       var question = document.getElementById("question");
+      //创建input
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "questions[" + count + "]";
+        input.name = "questions[" + count + "].name";
+        question.appendChild(input);                                     //向元素增加子节点 最为最后一个子节点
+
+
+        var input = document.createElement("input");
+        input.type = "button";
+        input.id = "questions[" + count + "]";
+        input.name = "questions[" + count + "].name";
+        input.value="属性";
+
+        question.appendChild(input);
+
+        //创建一个空格
+        var br = document.createElement("br");
+        question.appendChild(br);
+    }
+
+</script>
+
+      <!--   <script type='text/javascript'>
+
+            function check(){
+                if(!checkfile(1,'thumb')){
+                    return false;
+                }
+                var title=$("#name").val();
+                if(title==''){
+                    alert("请填写栏目名称");
+                    return false;
+                }
+
+                if(title.length>10){
+                    alert("标题不能多于10个字");
+                    return false;
+                }
+
+                var sort=$("#sort").val();
+                if(sort==''){
+                    alert("请填写栏目排序");
+                    return false;
+                }
+
+                var ad_list_id=$("#tpcode").val();
+                if(ad_list_id==''){
+                    alert("请填写栏目简码");
+                    return false;
+                }
+
+                var col_url=$("#col_url").val();
+                if(col_url==''){
+                    alert("请填写栏目URL");
+                    return false;
+                }
+                var tpl=$("#tpl").val();
+                if(tpl==''){
+                    alert("请填写套用模版");
+                    return false;
+                }
+                return true;
+            }
+
+
+        </script> -->
+
+        <script src="/Public/js/uploadimg.js"></script>
+
+</body>
+</html>

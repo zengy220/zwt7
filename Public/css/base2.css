@@ -1,0 +1,38 @@
+@charset "gb2312";
+/* CSS Document */
+.logo-top-right{ width:1.14rem; right:15px; top:0.25rem}
+.sure-btn{ width:2.10rem; height:0.54rem; margin:10px auto; background:#a02329; line-height:0.54rem; text-align:center; color:#dbb866; font-size:0.26rem}
+/*扫描结果*/
+.duihuan-list ul li{ width:44%; float:left; margin-right:3%; background:#fff}
+.duihuan-list ul{ width:110%}
+.goodsBox{ max-height:3.0rem; overflow:hidden; margin-bottom:0.1rem}
+.duihuan-list .duihuan-btn{ display:inline-block; background:#a02329; color:#dbb866; right:0; font-size:0.20rem; line-height:0.38rem; padding:0 0.05rem; top:3px}
+.shaom-box img{ width:1.80rem;vertical-align: -0.6rem;}
+
+/*绑定*/
+.bingd-box{ padding-top:25%}
+.bingd-box input{ border:1px solid #a02329; line-height:0.66rem; width:100%}
+.bingd-btn span{ width:100%; text-align:center; line-height:0.72rem; display:inline-block}
+.bingd-btn span.cancel{ background:#cccccc}
+.bingd-btn span.sure{ background:#a02329; color:#dbb866}
+.er-box{ background:#dd2c33; height:0.54rem; color:#fff; font-size:0.22rem; left:0; top:0; width:100%; display:none; line-height: 0.54rem;}
+
+.zwt-title{ font-weight:normal; display:inline-block}
+.title-qianse:before{ background:#ebebeb; left:-1.25rem}
+.title-qianse:after{ background:#ebebeb; right:-1.25rem}
+.title-shense:before{ background:#9c9c9c; left:-1.25rem}
+.title-shense:after{ background:#9c9c9c; right:-1.25rem}
+.zwt-title:before,.zwt-title:after{ width:0.95rem; height:1px; top:50%; content:'';position: absolute;}
+
+/*个人中心*/
+.member-touxing{ width:0.86rem; height:0.86rem; overflow:hidden}
+.member-touxing img{ width:100%}
+.chakanmix{ right:15px; bottom:10px}
+
+/*扫描二维码*/
+.erweima-box .p1{ font-size:0.46rem; padding-top:0.2rem}
+.erweima-box img{ width:4.40rem; display:block; margin:0.3rem auto}
+
+/*积分记录*/
+.integral-record-list li{ background:#fff; padding:10px 15px; position:relative;margin-bottom:5px}
+.jifen-box{ right:15px; height:0.40rem; line-height:0.40rem; top:50%; margin-top:-0.2rem; }

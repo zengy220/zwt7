@@ -1,0 +1,302 @@
+/* CSS Document */
+
+
+ul,li,dd,,dt,dl {
+	padding: 0;
+	margin: 0
+}
+
+li {
+	list-style: none
+}
+
+body {
+	/*background: #091639;*/
+}
+
+.top_banner {
+	background: url(../imges/lhb_banner.png) no-repeat center top;
+	height: 556px;
+	width: 100%
+}
+
+.content_1 {
+	width: 100%;
+	height:auto;
+	background: url(../imges/bj_top.png) no-repeat center top;
+	background-color: #091639;
+}
+
+.menu {
+	background: url(../imges/js_bj.png) no-repeat center top;
+	height: 80px;
+	width: 100%;
+	border-bottom: 12px solid #03081b
+}
+
+.menu ul {
+	width: 520px;
+	margin: 0px auto;
+	overflow: hidden;
+	padding-top: 20px
+}
+
+.menu ul li {
+	float: left;
+	background: url(../imges/noon_bj.png);
+	width: 80px;
+	height: 36px;
+	color: #fff;
+	line-height: 36px;
+	text-align: center;
+	font-size: 18px;
+	margin: 0 12px
+}
+
+.menu ul li a {
+	color: #fff;
+	text-decoration: none
+}
+
+.menu ul li.on,.menu ul li:hover {
+	background: url(../imges/on_bj.png)
+}
+
+.mid_content {
+	width: 80%;
+	margin: 0px auto;
+	padding: 50px 0;
+	overflow: hidden
+}
+
+.mid_content ul.list li {
+	width: 50%;
+	margin-bottom: 80px;
+}
+
+.mid_content ul.list li img{
+	height:100%;
+}
+
+.mid_content ul.list li.left {
+	float: left;
+}
+
+.mid_content ul.list li.right {
+	float: right
+}
+
+dl.xqlr {
+	/*margin-left: 25px*/
+}
+
+dl.xqlr dd,dl.xqlr dt {
+	float: left
+}
+
+dl.xqlr dt {
+	
+	height: 158px;
+	position: relative
+}
+
+dl.xqlr dt .paim_bj {
+	display: block;
+	position: absolute;
+	background: url(../imges/sj.png) no-repeat;
+	width: 62px;
+	height: 62px;
+	color: #fff;
+	left: 0;
+	top: 0;
+	; font-size: 20px;
+}
+
+dl.xqlr dt .paim_bj strong {
+	text-align: center;
+	display: block;
+	width: 35px;
+	height: 25px;
+	margin-top: 10px;
+}
+
+dl.xqlr dt i.guanjun {
+	background: url(../imges/guanjun.png)
+}
+
+dl.xqlr dt i.yajun {
+	background: url(../imges/yajun.png)
+}
+
+dl.xqlr dt i.jijun {
+	background: url(../imges/jijun.png)
+}
+
+dl.xqlr dt i {
+	width: 70px;
+	height: 57px;
+	display: block;
+	position: absolute;
+	top: -40px;
+	left: -28px;
+	z-index: 10
+}
+
+dl.xqlr dd {
+	background: url(../imges/bj_zl.png) no-repeat center;
+	width: 61%;
+	height: 158px;
+	margin-left: 10px
+}
+
+dl.xqlr dd div.line1 {
+	margin: 12px 20px;
+	font-size: 16px;
+	height: 21px;
+}
+
+dl.xqlr dd div.line1 span {
+	color: #fff;
+}
+
+dl.xqlr dd div.line1 span em {
+	font-style: normal;
+	padding-left: 10px
+}
+
+dl.xqlr dd div.line1 i {
+	font-style: normal;
+	font-size: 12px;
+	float: right;
+	display: inline-block;
+	color: #036eb8;
+	line-height: 21px
+}
+
+dl.xqlr dd div.line2 {
+	color: #fff;
+	margin: 40px 20px 0 20px;
+	height: 38px;
+	line-height: 38px
+}
+
+dl.xqlr dd div.line2 span {
+	font-size: 42px;
+	color: #f39800;
+	padding-left: 10px
+}
+
+dl.xqlr dd div.line2 span em {
+	font-size: 18px
+}
+
+@font-face {
+	font-family: 'dincond';
+    src: url('DINCond-Regular.eot');
+    src: url('DINCond-Regular.eot?#iefix') format('embedded-opentype'),
+    url('dincond-webfont.woff2') format('woff2'),
+    url('DINCond-Regular.woff') format('woff'),
+    url('DINCond-Regular.ttf') format('truetype'),
+    url('DINCond-Regular.svg#dincondregular') format('svg');
+    font - weight: normal;
+    font - style: normal
+}
+
+.f-ff-din {
+	font-family: 'dincond';
+}
+
+dl.xqlr dd div.line3 {
+	color: #f39800;
+	margin: 15px 15px;
+	overflow: hidden;
+	height: 17px
+}
+
+dl.xqlr dd div.line3 span {
+	text-align: left;
+	font-size: 12px;
+	display: block;
+	float: left;
+	/*width: 100px;*/
+	-webkit-transform: scale(0.90);
+}
+
+dl.xqlr dd div.line3 span.tow {
+	margin: 0 5px
+}
+
+dl.xqlr dd div.line3 span.tow,dl.xqlr dd div.line3 span.three {
+	width: 130px
+}
+
+/*ɸѡ*/
+.shaixuan {
+	margin: 0 auto;
+	padding: 30px 0 80px 0;
+	height: 40px;
+}
+
+.shaixuan ul.xlsx {
+	width: 1000px;
+	margin: 0 auto
+}
+
+.shaixuan ul.xlsx li {
+	width: 122px;
+	height: 20px;
+	float: right;
+	margin-right: 18px
+}
+
+.shaixuan ul.xlsx li .nice-select {
+	width: 122px;
+	height: 20px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+	line-height: 14px;
+	background: #03081b
+}
+
+.shaixuan ul.xlsx li .nice-select input {
+	background: none;
+	border: 0;
+	color: #fff;
+	line-height: 20px;
+	height: 20px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.shaixuan ul.xlsx li .nice-select .arrow {
+	position: absolute;
+	background: url(../imges/xiala_2.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	right: 0px;
+	top: 0
+}
+
+.shaixuan ul.xlsx li .nice-select ul {
+	width: 122px;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	overflow: hidden;
+	z-index: 9999;
+	background: url(../imges/tmbj.png) repeat;
+	padding: 5px 0;
+	display: none
+}
+
+.shaixuan ul.xlsx li .nice-select ul.qy li {
+	color: #fff;
+	font-size: 12px;
+	width: 122px;
+	text-align: center;
+	padding: 0 6px;
+	line-height: 22px;
+	height: 22px;
+	margin: 0
+}

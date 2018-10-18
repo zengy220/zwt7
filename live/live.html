@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>湘九味直播</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="/live/static/picture/favicon.ico">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/live/static/css/mui.min.css">
+    <!--App自定义的css-->
+    <link rel="stylesheet" href="/live/static/css/iconfont.css">
+    <link rel="stylesheet" href="/live/static/css/index.css">
+    <style>
+        body {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        
+        ul {
+            padding-left: 5px;
+            margin: 0;
+        }
+        
+        h4 {
+            text-align: center;
+        }
+        
+        .circuit {
+            padding-bottom: 30px;
+        }
+        
+        .circuit p {
+            font-size: 14px;
+            line-height: 24px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #tip {
+            position: absolute;
+            width: 100%;
+            /* height: 100%; */
+            z-index: 333;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            display: none;
+        }
+        
+        #tip p {
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            line-height: 258px;
+        }
+        
+        .item h3 {
+            text-align: left;
+            text-indent: 1em;
+            font: 400 18px/30px "Microsoft YaHei";
+        }
+        
+        .item li,
+        .item p {
+            text-align: left;
+            text-indent: 1em;
+            font: 400 14px/30px "Microsoft YaHei";
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <header class="mui-bar mui-bar-nav"> -->
+    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+    <!-- <h1 class="mui-title">直播</h1> -->
+    <!-- </header> -->
+    <!-- 视频源 -->
+    <div class="box">
+        <div class="video1" id="id_video_container_10905947996256317687" style="width:100%;height:1px;min-height:240px;"></div>
+        <!-- 直播的倒计时 -->
+        <!-- <div class="countdown" id="countdown">
+
+            <p id="txtP"> 直播 <span id="countTimes"></span></p><img src="/live/static/picture/logo-1.png" alt="">
+        </div> -->
+        <div id="tip">
+            <p>该直播已经结束</p>
+        </div>
+    </div>
+    <!-- 结束直播的状态 显示提示信息 -->
+
+    <!-- 显示点赞和在线人数的位置 -->
+    <section>
+        <div class="icons">
+            <!-- <span>LIVE</span> -->
+            <div class="active">
+                <span><i  class="iconfont">&#xe681;</i> <span id="num1"></span></span>
+                <span><i  class="iconfont">&#xe652;</i> <span id="num2"></span></span>
+            </div>
+        </div>
+    </section>
+    <!-- 下方的列表 -->
+    <div class="mui-content">
+        <div id="slider" class="mui-slider">
+            <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                <!-- <a class="mui-control-item" href="#item1mobile">
+                    互动聊天
+			    </a> -->
+                <a class="mui-control-item" href="#item2mobile">
+				    直播信息
+                </a>
+                <!-- <a class="mui-control-item" href="#item3mobile">
+				   活动流程
+			    </a> -->
+            </div>
+            <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-12"></div>
+            <div class="mui-slider-group">
+                <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+                    <div id="scroll1" class="mui-scroll-wrapper">
+                        <div class="mui-scroll">
+                            <div class="msgBox">
+                                <div class="item">
+                                    <h3>宗旨：</h3>
+                                    <p>湖南湘九味中药材开发有限公司是由清华启迪控股旗下启迪国信科技有限公司和湖南省中药材产业（联盟）协会合作成立的，是启迪国信在湖南省推动中药材产业项目的执行公司，也是湖南省中药材产业（联盟）协会的平台承接、运营和秘书长单位。公司整合湖南的中药材资源及科技资源与启迪国信的数字技术、大健康产业资源和资金平台资源；立足湖南，拓展全国，致力于推进中药材行业信息化、科学标准化及本地化服务；“科技园区、科技实业、科技金融”三位一体、相互协同的模式，推进湖南省中药材全产业链科学化健康化发展，助力湖南省打造“湘九味”，振兴“湘中药”。</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 点赞的按钮 -->
+                    <!-- <div class="zan">
+                        <i class="iconfont" onclick="dz();" style="font-size:20px;color:#fff;">&#xe615;</i>
+                    </div> -->
+                    <!-- <div class="change" id="changeName" style="display:none;">
+                        <i class="iconfont" style="font-size:22px;color:#fff;">&#xe608;</i>
+                    </div> -->
+                    <!-- <canvas id="myCanvas" width="160" height="200">您的浏览器不支持canvas标签~</canvas> -->
+                    <!-- 冒出的图片 -->
+                    <p style="display:none">
+                        <img id="img1" src="/live/static/picture/t01053ab4d4d6510abd.png" alt="">
+                        <img id="img2" src="/live/static/picture/t017f9904d4be818a87.png" alt="">
+                        <img id="img3" src="/live/static/picture/t015ec16e404a442dd4.png" alt="">
+                        <img id="img4" src="/live/static/picture/t017895dcd6312beacb.png" alt="">
+                        <img id="img5" src="/live/static/picture/t01f70bccf10e16addd.png" alt="">
+                        <img id="img6" src="/live/static/picture/t016d419cab67d819ac.png" alt="">
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="/live/static/js/jquery1.8.3.min.js"></script>
+<!-- <script src="/live/static/js/jquery.min.js"></script> -->
+<!-- <script src="/live/static/js/jumpbubble.js"></script> -->
+<!-- mui -->
+<script src="/live/static/js/mui.min.js"></script>
+<script src="/live/static/js/md5.js"></script>
+<script src="/live/static/js/public.js"></script>
+<!-- 直播 -->
+<script src="/live/static/js/conection.js"></script>
+<!-- <script src="/live/static/js/live_connect.js" charset="utf-8"></script> -->
+<!-- <script src="/live/static/js/live_connect.js" charset="utf-8"></script> -->
+<!-- <script src="/live/static/js/tcplayer-2.2.1.js" charset="utf-8"></script> -->
+<!-- 点播 -->
+<script src="/live/static/js/h5connect.js" charset="utf-8"></script>
+
+<script src="/live/static/js/video.js"></script>
+<!-- <script src="/live/static/js/iscroll.js"></script> -->
+<!-- <script src="/live/static/js/index.js"></script> -->
+<!-- <script src="/live/static/js/videoself.js"></script> -->
+<!-- websockets  简单聊天室 -->
+<!-- <script src="/live/static/js/scokets.js"></script> -->
+<script>
+    (function() {
+        var option = {
+            "channel_id": "10905947996256317687",
+            "app_id": "1255946259",
+            "width": "640",
+            "height": "380",
+            "http": 1,
+            "h5_start_patch": {
+                // url: "./img/covers.jpg",
+                url: "http://lvbs.cloud.tencent.com/live/play.html?url=http%3A%2F%2F30435.liveplay.myqcloud.com%2Flive%2F30435_4399.flv&url2=http%3A%2F%2F30435.liveplay.myqcloud.com%2Flive%2F30435_4399.m3u8&width=800&height=600",
+                stretch: true
+            },
+            'x5_fullscreen': true,
+        };
+        var listener = {
+                'playStatus': function(status, type) {
+                    // alert(status);
+                    if (status == 'playing') {
+                        // alert(status)
+                        // console.log(status);
+                        $('.countdown').css('display', 'none');
+                    }
+                    if (status == 'ready') {
+                        // play();
+                        // console.log(status);
+                    }
+                    if (status == 'playEnd') {
+                        // play();
+                        // alert("playEnd");
+                        // 直播结束 提示信息弹出
+                        $("#tip").css('display', 'block');
+                        // console.log(status);
+                    }
+                    if (status == "error") {
+                        // alert("error");
+                        // 直播发生异常  无法播放提示直播结束
+                        $("#tip").find('p').html('直播暂未开始!');
+                        $("#tip").css('display', 'block');
+                        // console.log(status);
+                        // console.log(type);
+                    }
+                    // 报错的时候  type 会返回错误类型
+                    // alert(type);
+                }
+            }
+            // alert(1111);
+        var obj = new qcVideo.Player("id_video_container_10905947996256317687", option, listener);
+        // var obj = new qcVideo.Player("id_video_container_10905947996256317687", option);
+        // console.log(obj);
+    })();
+</script>
+<script>
+    // 初始化MUI 
+    mui.init({
+        swipeBack: false
+    });
+    (function($) {
+        $('.mui-scroll-wrapper').scroll({
+            indicators: true //是否显示滚动条
+        });
+        var html2 = '';
+        var html3 = '';
+        var item2 = document.getElementById('item2mobile');
+        var item3 = document.getElementById('item3mobile');
+        document.getElementById('slider').addEventListener('slide', function(e) {
+            if (e.detail.slideNumber === 1) {
+                if (item2.querySelector('.mui-loading')) {
+                    setTimeout(function() {
+                        item2.querySelector('.mui-scroll').innerHTML = html2;
+                    }, 500);
+                }
+            } else if (e.detail.slideNumber === 2) {
+                if (item3.querySelector('.mui-loading')) {
+                    setTimeout(function() {
+                        item3.querySelector('.mui-scroll').innerHTML = html3;
+                    }, 500);
+                }
+            }
+        });
+    })(mui);
+
+    // 判断是否是安卓
+    // $(function() {
+    //     var u = navigator.userAgent,
+    //         app = navigator.appVersion;
+    //     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    //     var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    //     if (isAndroid) {
+    //         //这个是安卓操作系统
+    //         // alert(1);
+    //     }
+    //     if (isIOS) {　　　　 //这个是ios操作系统
+    //         // alert(2);
+    //     }
+    // });
+
+    //  渲染之后才能获取到结构的高度 高度通过js 计算
+    // 判断登页面资源加载之后 执行
+    setTimeout(function() {
+        var h = document.documentElement.clientHeight || document.body.clientHeight;
+        var h1 = $(".video1").height();
+        var h2 = $(".icons").height();
+        var h3 = $(".mui-control-item").height();
+        console.log(h1 + "---------" + h2 + "-------" + h3 + "---------" + h);
+        var h4 = h - h1 - h2 - h3;
+        console.log(h4);
+        // $(".txtContent").css('height', h4);
+        $('.mui-control-content').css('height', h4);
+        // moving();
+        // x5-video-player-type="h5" x5-video-player-fullscreen="true"
+        //  webkit-playsinline="true" x-webkit-airplay="true"
+        // playsinline   添加属性
+        $('video').attr('x5-video-player-type', 'h5');
+        $('video').attr('x5-video-player-fullscreen', true);
+        $('video').attr('webkit-playsinline', true);
+        $('video').attr('x-webkit-airplay', true);
+        $('video').attr('playsinline');
+        //获取videojs生成的video
+        var myPlayer = $('video');
+        // 操作video  标签  
+        var iWindowWidth;
+        var iWindowHeight;
+        // window.onresize = function() {
+        //     // autoWH();
+        //     myPlayer.style.width = iWindowWidth + "px";
+        //     myPlayer.style.height = iWindowHeight + "px";
+        // };
+
+        //播放按钮
+        // var oPlayBtn = document.getElementById("playBtn");
+        //获取视频盒子
+        var oVideoBox = document.getElementById("countdown");
+        //获取滚动盒子
+        // var oScrollBox = document.getElementById("item1mobile");
+        //遮罩图片
+        var oPoster = $('.box').find('img');
+        // var oScroll = document.getElementById("scroll");
+        //图片加载完
+        oPoster.onload = function() {
+            oVideoBox.style.height = oPoster.offsetHeight + "px";
+        };
+        // var fScroll = new iScroll(oScrollBox, {
+        //     hScrollbar: false,
+        //     vScrollbar: false,
+        //     bounce: false
+        // });
+        window.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, false);
+
+        // function autoWH() {
+        //     //获取可视区宽度
+        //     iWindowWidth = window.innerWidth;
+        //     //获取可视区高度
+        //     iWindowHeight = window.innerHeight;
+        //     var iScrollH = 3 * iWindowWidth / 4;
+        //     oScrollBox.style.top = iScrollH + "px";
+        //     oScrollBox.style.height = iWindowHeight - iScrollH + "px";
+        //     fScroll.refresh();
+        // }
+        // autoWH();
+
+        // 存在就绑定
+        if ($('video')[0]) {
+            $('video')[0].addEventListener("x5videoexitfullscreen", function() {
+                // alert("exit fullscreen");
+                // $('video').play();
+                // $('#box').css('display', "none");
+            })
+            $('video')[0].addEventListener("x5videoenterfullscreen", function() {
+                // alert("enter fullscreen");
+                // $('#box').css('display', "block");
+            })
+        }
+    }, 300);
+
+
+    // JS代码：用JS代码自动判断窗口的高度，然后赋值给body。
+    $(document).ready(function() {
+        $('body').css({
+            'height': $(window).height()
+        })
+    });
+
+    //  消息滚动
+    function moving() {
+
+        // var chatlist = document.getElementById('ulList');
+        // chatlist.scrollTop = chatlist.scrollHeight;
+
+        var ulH = $('#ulList').css('height');
+        var mH = $('#item1mobile').css('height');
+        console.log(ulH);
+        console.log(mH);
+        // 判断高度是否滚动
+        if (ulH > mH) {
+            var disH = parseInt(ulH) - parseInt(mH) + 65;
+            console.log(disH);
+            $('.mui-scroll').css('transform', 'translate3d(0px,-' + disH + 'px,0px)');
+        }
+
+    }
+
+    // countTime();
+
+    function countTime() { //获取当前时间               
+        var date = new Date();
+        var now = date.getTime();
+        //设置截止时间  
+        var str = "2018/12/10 10:18:00";
+        var endDate = new Date(str);
+        var end = endDate.getTime();
+
+        //时间差   判断时间差如果为负数 则表示正在直播中
+        var leftTime = end - now;
+        //定义变量 d,h,m,s保存倒计时的时间  
+        var d, h, m, s;
+        if (leftTime >= 0) {
+            d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+            h = Math.floor(leftTime / 1000 / 60 / 60 % 24) > 10 ? Math.floor(leftTime / 1000 / 60 / 60 % 24) : 0 + '' + Math.floor(leftTime / 1000 / 60 / 60 % 24);
+            m = Math.floor(leftTime / 1000 / 60 % 60) > 10 ? Math.floor(leftTime / 1000 / 60 % 60) : 0 + '' + Math.floor(leftTime / 1000 / 60 % 60);
+            s = Math.floor(leftTime / 1000 % 60);
+        }
+        //将倒计时赋值到div中  
+        var box = document.getElementById('txtP'); // 提示文字的容器
+        // 判断 如果 d 数为零 则不显示 天数
+        if (d == 0) {
+            document.getElementById('countTimes').innerHTML = h + "时" + m + "分" + s + "秒";
+        } else if (d > 0) {
+            document.getElementById('countTimes').innerHTML = d + "天" + h + "时" + m + "分" + s + "秒";
+        } else {
+            box.innerText = "正在直播中....";
+        }
+        if (d == 0 && h == 0 && m == 0 && s == 0) {
+            box.innerText = "正在直播中....";
+        } else {
+            setTimeout(countTime, 1000);
+        }
+
+    }
+</script>
+
+</html>

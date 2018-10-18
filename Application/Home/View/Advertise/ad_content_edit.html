@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>介贷网后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"><a href="/{$Think.MODULE_NAME}/Advertise/ad_content_list" class="tip-bottom">广告内容列表</a> <a href="#" class="current">修改广告内容</a> </div>
+  <h1>广告内容</h1>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    
+     <div class="span6" style="width:1000px;">
+      <div class="widget-box">
+        <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>修改广告内容</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="/{$Think.MODULE_NAME}/Advertise/ad_content_edit" method="post" class="form-horizontal" onsubmit="return check();" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="{$ad_content_id}"/>
+            <div class="control-group">
+              <label class="control-label">标题:</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="请填写标题，不超过20个字" name="title" value="{$data.title}" id="title"  maxlength="20" style="width:200px;"/>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label">所属广告位：</label>
+              <div class="controls">
+				<select name="ad_list_id">
+					<option value="0">请选择</option>
+					<volist name="ad_list" id="vo">
+						<option value="{$vo.id}" <if condition="$vo['id'] eq $data['ad_list_id']">selected</if>>{$vo.name}</option>
+					</volist>
+				</select>
+              </div>
+            </div>
+           
+           <div class="control-group">
+              <label class="control-label">排序：</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="请填写排序" name="sort" id="sort" style="width:200px;" value="{$data.sort}" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+              </div>
+            </div>
+          
+		   <div class="control-group">
+              <label class="control-label">跳转地址：</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="请填写跳转地址" name="url" id="url" style="width:200px;" value="{$data.url}"/>
+              </div>
+            </div>
+			
+			 <div class="control-group">
+              <label class="control-label">图片：</label>
+			  <!--<div class="controls">
+				<if condition="$data.img neq ''"><img src="/upfile/{$data.img}" width='300px' height='300px'/></if>
+			  </div>-->
+              <div class="controls">
+                <input type="file"  class="span11" name="img" id="img"  onchange="checkfile(2,'img')"style="width:200px;"/>
+              </div>
+            </div>
+			
+			 <!--<div class="control-group">
+              <label class="control-label">文字：</label>
+              <div class="controls">
+		        <textarea name="word" style="width:400px;height:200px;">{$data.word}</textarea>
+              </div>
+            </div>-->
+			
+            <div class="form-actions" style="margin:0 180px;">
+              <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    
+  
+</div></div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+<script src="/Public/js/excanvas.min.js"></script> 
+<script src="/Public/js/jquery.min.js"></script> 
+
+<script type='text/javascript'>
+
+function check(){
+    if(!checkfile(2,'img')){
+        return false;
+    }
+	var title=$("#title").val();
+	if(title==''){
+		alert("请填写标题");
+		return false;
+	}
+	
+	if(title.length>20){
+		alert("标题不能多于20个字");
+		return false;
+	}
+	
+	var ad_list_id=$("#ad_list_id").val();
+	if(ad_list_id==0){
+		alert("请选择所属广告位");
+		return false;
+		
+	}
+	
+	var sort=$("#sort").val();
+	if(sort==""){
+		alert("排序不能为空");
+		return false;
+		
+	}
+	
+	var url=$("#url").val();
+	if(url==""){
+		//alert("跳转地址不能为空");
+		//return false;
+		
+	}
+	
+	return true;
+	
+	
+	
+}	
+
+
+</script>
+<script src="/Public/js/uploadimg.js"></script>
+<script src="/Public/js/jquery.ui.custom.js"></script>
+<script src="/Public/js/bootstrap.min.js"></script> 
+<script src="/Public/js/jquery.flot.min.js"></script> 
+<script src="/Public/js/jquery.flot.resize.min.js"></script> 
+<script src="/Public/js/jquery.peity.min.js"></script> 
+<script src="/Public/js/fullcalendar.min.js"></script> 
+<script src="/Public/js/matrix.js"></script> 
+<script src="/Public/js/matrix.dashboard.js"></script> 
+<script src="/Public/js/jquery.gritter.min.js"></script> 
+<script src="/Public/js/matrix.interface.js"></script> 
+<script src="/Public/js/matrix.chat.js"></script> 
+<script src="/Public/js/jquery.validate.js"></script> 
+<script src="/Public/js/matrix.form_validation.js"></script> 
+<script src="/Public/js/jquery.wizard.js"></script> 
+<script src="/Public/js/jquery.uniform.js"></script> 
+<script src="/Public/js/select2.min.js"></script> 
+<script src="/Public/js/matrix.popover.js"></script> 
+<script src="/Public/js/jquery.dataTables.min.js"></script> 
+<script src="/Public/js/matrix.tables.js"></script>
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+  
+</script>
+</body>
+</html>

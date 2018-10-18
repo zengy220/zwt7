@@ -1,0 +1,203 @@
+﻿html {
+    height: 100%;
+    background-color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+.mui-content {
+    border-top: 1px solid #ccc;
+}
+
+.mui-bar-nav~.mui-content {
+    padding-top: 0;
+}
+
+.mui-control-content .mui-loading {
+    margin-top: 50px;
+}
+
+.mui-control-content {
+    min-height: 280px;
+}
+
+.msgBox h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.txt {
+    padding: 0 5%;
+}
+
+.txt p {
+    text-indent: 2em;
+    line-height: 26px;
+}
+
+
+/* 倒计时 部分样式 */
+
+.box {
+    position: relative;
+}
+
+.countdown {
+    position: absolute;
+    z-index: 99;
+    top: 5%;
+    left: 5%;
+    width: 95%;
+}
+
+.countdown p {
+    font: 400 16px/30px "Microsoft YaHei";
+    position: relative;
+}
+
+.countdown p::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: #FE7D06;
+    left: -10px;
+    top: 5px;
+}
+
+.countdown img {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    width: 50px;
+}
+
+
+/* 中间部分的信息 */
+
+.icons {
+    height: 35px;
+    line-height: 35px;
+}
+
+.icons>span:first-child {
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    margin-left: 5%;
+}
+
+.active {
+    float: right;
+    margin-right: 5%;
+}
+
+.active>span:first-child {
+    margin-right: 10px;
+}
+
+
+/* 互动聊天部分样式 */
+
+.txtContent {
+    overflow: scroll;
+}
+
+.userList {
+    padding-left: 5%;
+    padding-bottom: 40px;
+    margin-top: 0;
+}
+
+.userList li {
+    clear: both;
+    line-height: 25px;
+    width: 83%;
+}
+
+.notice {
+    width: 94%;
+    margin: 5px auto 0;
+    line-height: 25px;
+}
+
+.notice p,
+.userList p {
+    margin-bottom: 5px;
+}
+
+.notice span,
+.userList span {
+    float: left;
+}
+
+.ipts {
+    position: absolute;
+    bottom: -10px;
+    background-color: #EFEFF4;
+    width: 100%;
+    padding-left: 5px;
+    z-index: 99;
+}
+
+.ipts>input {
+    height: 30px;
+    width: 75%;
+}
+
+.ipts>button {
+    width: 17%;
+    height: 30px;
+    background-color: #FE7D06;
+    border: none;
+    border-radius: 5px;
+}
+
+
+/*文本框遮罩层 */
+
+.ceng {
+    position: absolute;
+    height: 30px;
+    width: 70%;
+    line-height: 30px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    display: none;
+}
+
+.layui-tab-item {
+    max-height: 160px;
+    overflow: scroll;
+    padding-bottom: 40px;
+}
+
+.change,
+.zan {
+    position: absolute;
+    right: 5%;
+    bottom: 27%;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+    background-color: #FE7D06;
+    border-radius: 50%/50%;
+    text-align: center;
+    line-height: 30px;
+    box-shadow: 2px 3px 5px #999;
+}
+
+.change {
+    bottom: 15%;
+    z-index: 222;
+}
+
+canvas {
+    position: absolute;
+    right: 0%;
+    bottom: 30%;
+    z-index: 98;
+}

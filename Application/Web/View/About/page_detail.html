@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>介贷网官网</title>
+<link href="/Public/web/css/common.css" rel="stylesheet" type="text/css" />
+<link href="/Public/web/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/Public/web/js/jquery-1.11.1.min.js"></script>
+<script src="/Public/web/js/common.js"></script>
+</head>
+
+<body>
+<include file="Index:header" />
+   
+   <!--banner-->
+   <div class="columnSpace">
+       <div class="rel"  <if condition="$adimg.img neq '' ">style="background:url({$adimg.img}) <else/>style="background:url(/Public/web/images/pro_banner.jpg) </if> center center; width:100%; height:229px; ">
+       <a class="abs" style="width: 100%; height: 100%; z-index: 22;" href="{$adimg.url}"></a>
+       <div class="w1100 rel" style="height:229px">
+   <p class="abs" style="height:2px; width:100%; background:#a0232a; left:0; bottom:0"></p>
+   </div>
+   </div>
+   </div>
+   <!--banner-->
+   <div class="w1100">
+   <div class="box_main fn-clear">
+   <div class="box_main_sub fn-left">
+   <dl>
+      <dt><img src="{$pcolInfo.thumb}"></dt>
+      <foreach name ="sunCol" key="key" item="val"  >
+         <dd <if condition="$val.id eq $id">class="active"</if>  id="tags{$key+1}"   ><a href="{$val.col_url}/id/{$val.id}/ptpcode/{$ptpcode}"><span>{$val.name}</span> </a></dd>
+      </foreach>
+   </dl>
+   </div>
+   <div class="box_main_sub2 fn-right nesw-list">
+   <div class="box-cont-sub color-99">您现在的位置：<a href="/{$Think.MODULE_NAME}/" class="color-99">首页</a> > {$pcolInfo.name} > {$scolInfo.name}</div>
+   <div class="new-content">
+   	<div class="news-title tc mt35 mb35">
+   		<h3 class="fz-18 zhu-title">{$now_info.title}</h3>
+   		<div class="rel mt10"><span class="fu-title">{$now_info.subtitle}</span>
+   			<i class="abs fb-titme color-99 fz-12">发布时间:<span>{$now_info.create_time}</span></i>
+   		</div>
+   		<div class="text-content tl ">
+           {$now_info.contents}
+        </div>
+   	</div>
+   	<div class="pt25 pb30 rel news-fenye">
+       <if condition="$preInfo neq null">
+          <div class="lh24">上一篇：<a href="/{$Think.MODULE_NAME}/about/page_detail/news_id/{$preInfo.id}/ptpcode/{$ptpcode}/id/{$id}">{$preInfo.title}</a></div>
+       <else/>
+          <div class="lh24">上一篇：<span>没有了</span></div>
+       </if>
+       <if condition="$nextInfo neq null">
+          <div class="lh24">下一篇：<a href="/{$Think.MODULE_NAME}/about/page_detail/news_id/{$nextInfo.id}/ptpcode/{$ptpcode}/id/{$id}"><span>{$nextInfo.title}</span></a></div>
+       <else/>
+          <div class="lh24">下一篇：<span>没有了</span></div>
+       </if>
+
+	<a href="/{$Think.MODULE_NAME}/about/page_content/id/{$id}/ptpcode/{$ptpcode}" class="color-999 pt30 return color-99">返回列表&gt;</a>
+	</div>
+   </div>
+   </div>
+   
+   </div>
+   </div>
+<include file="Index:footer" />
+   
+</body>
+</html>

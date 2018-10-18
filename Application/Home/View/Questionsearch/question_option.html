@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-style.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-media.css" />
+    <link rel="stylesheet" href="/Public/css/uniform.css" />
+    <link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Public/css/wenjuan_ht.css">
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/index.js"></script>
+    <!-- <script src="/Public/demos/googlegg.js"></script> -->
+    <style type="text/css">
+        .table th,.table td {text-align:left}
+    </style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="javascript:;" class="tip-bottom">菜单管理</a> <a href="#" class="current">菜单列表</a> </div>
+    </div>
+    
+       <input type="hidden" name="so" value="111">
+    <div class=" all_660">
+    <div class="yd_box"></div>
+    <div class="but" style="padding-top: 20px">
+        <select id="addquerstions" class="addquerstions" name="">
+            <option value="-1">添加问题</option>
+            <option value="0">单选</option>
+            <!-- <option value="1">多选</option> -->
+            <option value="2">填空</option>
+            <!-- <option value="3">矩阵</option> -->
+        </select>
+        <button>提交问题</button>
+    </div>
+    <!--选项卡区域  模板区域---------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="xxk_box">
+            <div class="xxk_conn hide">
+                <!--单选----------------------------------------------------------------------------------------------------------------------------------------->
+                <div class="xxk_xzqh_box dxuan ">
+                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" placeholder="单选题目"></textarea>
+                    <div class="title_itram">
+                        <div class="kzjxx_iteam">
+                            <input name="" type="radio" value="" class="dxk">
+                            <input name="" type="text" class="input_wenbk" value="" placeholder="选项">
+                            <label>
+                                <input name="" type="checkbox" value="" class="fxk"> <span>可填空</span>
+                            </label> <a href="javascript:void(0);" class="del_xm">删除</a>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="zjxx">增加选项</a>
+                    <!--完成编辑-->
+                    <div class="bjqxwc_box">
+                        <a href="javascript:void(0);" class="qxbj_but">取消编辑</a>
+                        <a href="javascript:void(0);" class="swcbj_but"> 完成编辑</a>
+                    </div>
+                </div>
+              
+                <!-- 填空----------------------------------------------------------------------------------------------------------------------------------------->
+                <div class="xxk_xzqh_box tktm hide">
+                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_tk" placeholder="答题区"></textarea>
+                    <!--完成编辑-->
+                    <div class="bjqxwc_box">
+                        <a href="javascript:void(0);" class="qxbj_but">取消编辑</a>
+                        <a href="javascript:void(0);" class="swcbj_but"> 完成编辑</a>
+                    </div>
+                </div>
+              
+                
+            </div>
+        </div>
+    </div>
+ <form action="{$col_from_url}" method="post" id='form_ques' class="form-horizontal" onsubmit="to_form();"  enctype="multipart/form-data">
+       <div class="form-actions" style="margin:0 180px;">
+                        <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+                    </div>
+                    </form>
+
+
+</div>
+
+
+
+    <!--end-main-container-part-->
+
+    <!--Footer-part-->
+    <include file="Index:foot" />
+    <!--end-Footer-part-->
+
+
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/client.js"></script>
+    <script src="/Public/js/matrix.js"></script>
+    <script src="/Public/js/timepicker/WdatePicker.js"></script>
+    <script src="/Public/js/base.js"></script>
+    <script type="text/javascript">
+    function add1(){
+    var input1 = document.createElement('input');
+    input1.setAttribute('type', 'text');
+    input1.setAttribute('name', 'organizers[]');
+    input1.setAttribute('class', 'git');
+    
+    var btn1 = document.getElementById("org");
+    btn1.insertBefore(input1,null);
+}
+</script>
+<script type="text/javascript">
+    
+    function to_form(){
+        var html = '';
+        $('.yd_box .movie_box').each(function (){
+            var _this=$(this),index=_this.index('.yd_box .movie_box'),val='',prefix_name='ques['+index+']';
+           console.log(this.className);
+            if(!_this.has('i[name^=question_name]')){
+             val =  _this.find('textarea').val();
+             if(!val){return false;}
+             html += "<input type='hidden' name='"+prefix_name+"[to_name]' value='"+val+"'>"
+            }else{
+                val =_this.find('.btwenzi').html();
+                 html += "<input type='hidden' name='"+prefix_name+"[to_name_single_election]' value='"+val+"'>"
+                 _this.find('.wjdc_list span').each(function (){
+
+                    var option_val = $(this).html();
+
+                html +=  "<input type='hidden' name='"+prefix_name+"[to_name_option][]' value='"+option_val+"'>"
+                    
+                });
+            }
+            // console.log(html);
+          $('#form_ques').append(html);
+           
+
+
+
+        })
+    }
+</script>
+</body>
+</html>

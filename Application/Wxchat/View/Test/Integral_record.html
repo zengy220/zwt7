@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<!-- 个人积分记录 -->
+		<head>
+        <meta>
+        <title>积分记录</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/base2.css">
+        <script src="/Public/js/jquery.min.js"></script>
+		<body>
+		<if condition="$arr neq null">
+			<div class="integral-record ">
+			<foreach name="arr" item="val" key="k">
+				<dl>
+				<dt class="pl15 pr15 pt10 pb10">
+				<p class="f28px">{$k}</p>
+				<div class="f24px">收入:<span>{$info.$k.increase}积分</span> &nbsp;支出:<span>{$info.$k.reduce}积分</span></div>
+				</dt>
+				<dd>
+					<ul class="integral-record-list">
+						<foreach name="val" item="v">
+							<li>
+							<p class="f28px">{$v.type}</p>
+							<div class="f24px">{$v.time}</div>
+							<span class="pos-a f28px jifen-box"><span class="color-red"><if condition="$v.jifen gt 0">+{$v.jifen}<else/>{$v.jifen}</if></span>积分</span>
+							</li>
+						</foreach>
+					</ul>
+				</dd>
+				</dl>
+				</foreach>
+				</div>
+				<else/>
+				暂无数据！
+			</if>
+       
+</body>
+</html>

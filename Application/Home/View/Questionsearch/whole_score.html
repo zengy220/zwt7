@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>后台管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-style.css" />
+    <link rel="stylesheet" href="/Public/css/matrix-media.css" />
+    <link rel="stylesheet" href="/Public/css/uniform.css" />
+    <link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+    <style type="text/css">
+        .table th,.table td {text-align:left}
+    </style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="javascript:;" class="tip-bottom">菜单管理</a> <a href="#" class="current">菜单列表</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+ 
+
+
+            <div class="span11">
+                
+    
+
+
+                <div class="widget-box">
+
+                    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>问题列表</h5>
+                    </div>
+
+                    <div class="widget-content ">
+                        <div><h5>样本总量：{$all_numbers}</h5></div>
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th style="width:30%;">寒+阳虚</th>
+                                <th>寒+阳虚样本量</th>
+                                <th>寒+阳虚占比</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><70</td>
+                                    <td>{$han_yang.no_level}</td>
+                                    <td>{$han_yang_proportion.no_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>70-100</td>
+                                    <td>{$han_yang.one_level}</td>
+                                    <td>{$han_yang_proportion.one_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>101-150</td>
+                                    <td>{$han_yang.two_level}</td>
+                                    <td>{$han_yang_proportion.two_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>>150</td>
+                                    <td>{$han_yang.three_level}</td>
+                                    <td>{$han_yang_proportion.three_level}</td>
+                                </tr>
+
+                            </tbody>
+                            
+                        </table>
+
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th style="width:30%;">气滞+血瘀值</th>
+                                <th>气滞+血瘀样本量</th>
+                                <th>气滞+血瘀占比</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><70</td>
+                                    <td>{$qi_xue.no_level}</td>
+                                    <td>{$qi_xue_proportion.no_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>70-100</td>
+                                    <td>{$qi_xue.one_level}</td>
+                                    <td>{$qi_xue_proportion.one_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>101-150</td>
+                                    <td>{$qi_xue.two_level}</td>
+                                    <td>{$qi_xue_proportion.two_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>>150</td>
+                                    <td>{$qi_xue.three_level}</td>
+                                    <td>{$qi_xue_proportion.three_level}</td>
+                                </tr>
+
+                            </tbody>
+                            
+                        </table>
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th style="width:30%;">气虚+血虚值</th>
+                                <th>气虚+血虚样本量</th>
+                                <th>气虚+血虚占比</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><70</td>
+                                    <td>{$qi_xue_xu.no_level}</td>
+                                    <td>{$qi_xue_xu_proportion.no_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>70-100</td>
+                                    <td>{$qi_xue_xu.one_level}</td>
+                                    <td>{$qi_xue_xu_proportion.one_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>101-150</td>
+                                    <td>{$qi_xue_xu.two_level}</td>
+                                    <td>{$qi_xue_xu_proportion.two_level}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>>150</td>
+                                    <td>{$qi_xue_xu.three_level}</td>
+                                    <td>{$qi_xue_xu_proportion.three_level}</td>
+                                </tr>
+
+                            </tbody>
+
+                             <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th style="width:30%;">生育后痛经情况的变化选项</th>
+                                <th>生育后痛经情况的变化样本量</th>
+                                <th>生育后痛经情况的变化占比</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A.未生育</td>
+                                    <td><if condition="$bear[a] eq null">0<else/>{$bear[a]}</if></td>
+                                    <td>{$bear_proportion[a]}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>B.生育后痛经加重</td>
+                                    <td><if condition="$bear[b] eq null">0<else/>{$bear[b]}</if></td>
+                                    <td>{$bear_proportion[b]}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>C.生育后痛经无变化</td>
+                                    <td><if condition="$bear[c] eq null">0<else/>{$bear[c]}</if></td>
+                                    <td>{$bear_proportion[c]}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>D.生育后痛经缓减</td>
+                                    <td><if condition="$bear[d] eq null">0<else/>{$bear[d]}</if></td>
+                                    <td>{$bear_proportion[d]}</td>
+                                </tr>
+
+                            </tbody>
+                            
+                        </table>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div></div>
+    <!--end-main-container-part-->
+
+    <!--Footer-part-->
+    <include file="Index:foot" />
+    <!--end-Footer-part-->
+
+
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/client.js"></script>
+    <script src="/Public/js/matrix.js"></script>
+    <script src="/Public/js/timepicker/WdatePicker.js"></script>
+    <script src="/Public/js/base.js"></script>
+    <script type="text/javascript">
+        function add1(){
+            var input1 = document.createElement('input');
+            input1.setAttribute('type', 'text');
+            input1.setAttribute('name', 'organizers[]');
+            input1.setAttribute('class', 'git');
+            
+            var btn1 = document.getElementById("org");
+            btn1.insertBefore(input1,null);
+        }
+    </script>
+    <script type="text/javascript">
+        function submitForm(){    
+            var form = document.getElementById("myform");    
+            form.submit();
+        }
+    </script>
+
+
+</body>
+</html>

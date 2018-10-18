@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>制作二维码页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta content="telephone=no" name="format-detection">
+<style>
+	table,tr,th,td{text-align:center;}
+	table{border-spacing: 0;border-collapse: collapse;}
+	tr{height:30px;}
+	th{background:#eee;}
+</style>
+<script type="text/javascript">
+	
+	
+
+</script>
+</head>
+<body>
+	<form method="get" action="/Wxchat/Product/mkMoreQrcode" enctype="multipart/form-data">
+		<table border="1" align="center" width="500px;">
+			<tr>
+				<th colspan="2" id="sss">
+					制作包装二维码
+				</th>
+			</tr>
+
+
+			<tr>
+				<td width="40%">请选择生产的商品类型</td>
+				<td>
+					<select name="type_id" id="type_id">
+						<option value="001">介贷网十元酱香型槟榔</option>
+						<option value="002">介贷网二十元清香型槟榔</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="40%">请输入本次生产的二维码数量</td>
+				<td>
+					<input type="text" name="total" />
+				</td>
+			</tr>
+
+			<tr>
+				<td align="left" colspan="2">
+					<input type="submit" value="生成二维码" />
+					<input type="reset" value="重新填写" />
+				</td>
+			</tr>
+
+		</table>
+
+	</form>
+</body>
+</html>

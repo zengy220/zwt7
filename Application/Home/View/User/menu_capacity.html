@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>后台管理平台</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+<style type="text/css">
+.table th,.table td {text-align:left}
+</style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> 
+	<a href="/Home/User" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>首页</a> 
+	<a href="{$param.before_url}" class="tip-bottom">{$param.before_menu}</a> 
+	<a href="javascript:;" class="current">{$param.current_menu}</a> 
+  </div>
+</div>
+<div class="container-fluid">
+  <hr>
+  
+  <div class="row-fluid">
+  <if condition="$param.menu eq 'menu_list' "> 
+	<div class="span11"><a href="/Home/User/menu_capacity_edit/u/{$param.u}" class="btn btn-success btn">新增功能</a>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>数据</h5>
+          </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th style="width:30px;">序号</th>
+                  <th>功能标题</th>
+                  <th>功能URL</th>
+                  <th>状态</th>
+				  <th>展示</th>
+				  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			   <volist name="menu_list" id="vs">
+                <tr>
+                  <td>{$i}</td>
+				  <td>{$vs.menu_name}</td>
+                  <td>{$vs.menu_url}</td>
+				  <td><if condition="$vs.menu_status eq 1 "><font color="#51A351">使用</font><else/><font color="#F83D35">禁用</font></if></td>
+				  <td><if condition="$vs.menu_show eq 1 "><font color="#51A351">展示</font><else/><font color="#F83D35">隐藏</font></if></td>
+				  <td>
+					<a href="/Home/User/menu_capacity_redact/u/{$vs.menu_Id}" class="btn btn-primary btn-mini">编辑</a> | 
+					<a href="/Home/User/menu_capacity_del/u/{$vs.menu_Id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除!')==false)return  false; ">删除</a>
+				  </td>	  
+                </tr>
+			   </volist>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		<else/>
+		<div class="span6">
+		<div class="widget-box">
+			<div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+			  <h5>{$param.title}</h5>
+			</div>
+			<div class="widget-content nopadding">
+			  <form action="{$param.menu_from_url}" method="post" class="form-horizontal">
+				<div class="control-group">
+				  <label class="control-label">功能名 :</label>
+				  <div class="controls">
+					<input type="text" class="span11" placeholder="功能名" name="menu_name" value="{$menu_data.menu_name}" style="width:220px;"/>
+				  </div>
+				</div>
+
+				<div class="control-group control-single">
+				  <label class="control-label" name="manu_url">功能URL:</label>
+				  <div class="controls" >
+					<input type="text"  class="span11" placeholder="功能URL" name="menu_url" id="menu_url" value="{$menu_data.menu_url}" style="width:220px;"/>
+				  </div>
+				</div>
+				
+				<div class="control-group">
+				  <label class="control-label">状态 :</label>
+				  <div class="controls">
+					<label>
+						<input type="radio" name="menu_status" value='0' <if condition=" $menu_data.menu_status eq 0 ">checked</if>/> 禁用
+					</label>
+					<label>
+					  <input type="radio" name="menu_status" value='1' <if condition=" $menu_data.menu_status eq 1 ">checked</if>/> 使用
+					</label>
+	   
+				  </div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label">展示 :</label>
+					<div class="controls">
+						<label><input type="radio" name="menu_show" value="0" <if condition=" $menu_data.menu_show eq 0 ">checked</if>>隐藏</label>
+						<label><input type="radio" name="menu_show" value="1" <if condition=" $menu_data.menu_show eq 1 ">checked</if>>显示</label>
+					</div>
+				</div>
+				
+				<input type="hidden" name="o" value="{$param.o}" />
+				<input type="hidden" name="u" value="{$param.u}" />
+				
+				<div class="form-actions" style="margin:0 180px;">
+				  <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+				</div>
+			  </form>
+			</div>
+		</div>
+		</div>
+		</if>
+		
+		
+	</div>
+  </div>
+
+</div>
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+<script src="/Public/js/jquery.min.js"></script>
+<script src="/Public/js/client.js"></script>
+<script src="/Public/js/matrix.js"></script> 
+<script src="/Public/js/timepicker/WdatePicker.js"></script> 
+<script src="/Public/js/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+ <!--top-->
+   <div class="top-header">
+   <div class="w1100 fn-clear">
+   <div class="fn-left"><img src="/Public/web/images/logo.png" class="mt10"/></div>
+   <div class="fn-right top-header-r">
+   <dl class="fn-clear">
+   <dt class="fn-left color-da mt10">
+   <p><i class="phone"></i>全国服务热线：<span class="fz-16">400-8837 997</span></p>
+   <p><i class="email"></i>E-mail：<span class="fz-16">zwt@hncpzw.com</span></p>
+   <p></p>
+   </dt>
+   <dd class="fn-left ml20"><img src="/Public/web/images/top_ewm.jpg"  width="80" height="80"/></dd>
+   </dl>
+   </div>
+   </div>
+   </div>
+   <!--top-->
+   	 <!--导航-->
+   <div class="top-menu">
+   <div class="w1100">
+   <ul class="fn-clear">
+   <li><a href="/web/">首页</a></li>
+
+      <foreach name ="topCol" key="key" item="arr"  >
+         <li class='n{$key}  <if condition="$arr.tpcode eq $ptpcode">active</if> '><a href="{$arr.col_url}/ptpcode/{$arr.tpcode}"  idx="{$key}"><span>{$arr.name}</span></a></li>
+      </foreach>
+   <!--<li><a href="" target="_blank">联系我们</a></li>-->
+   </ul>
+   </div>
+   </div>
+
+
+
+
+
+
+var problemIndex ; //当前显示的问题索引
+var  problemNum = $(".dxt_box li”).length;//获取问题个数
+ var problemBox = $(‘.dxt_box’),problemList = problemBox.find(‘li’);
+showProblemContent(1);//初始化显示第一个问题
+// 显示第几个问题
+Function showProblemContent(index)
+{
+    if(problemIndex){
+        
+        problemList.eq(problemIndex-1).hide(); // 隐藏之前的问题
+
+
+      }
+        problemList.eq(index-1).show(); //显示当前问题
+       
+    problemIndex = index; // 更新
+
+
+}
+$(".tj_zuotm").click(function(){
+     
+  // 检查提交内容
+  if(!checkProblemContent(problemIndex)){
+     
+    alert(‘请选择’);
+    Return false;
+}
+// 判断是否有下一题
+if(problemNum>problemIndex){
+
+
+   showProblemContent(problemIndex+1);
+
+
+}else{
+  
+  $(‘form’).submit();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+//表单内容检查
+Function checkProblemContent(index)
+{
+   Var checkResult = true;
+ 
+  Var problem = roblemList.eq(index-1).find(‘:input’),type=problem.attr(’type’)||’text’;
+type =  type.toLowerCase();
+
+
+    
+      if(type==‘radio’||tagName==‘checkbox’){
+            
+          return problem.is(‘:checked’);
+         
+     }else{
+
+
+        Return  !!problem.val();
+}
+     
+
+
+
+
+    
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+   <!--导航-->
+   

@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta>
+        <title>兑换商品</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="telephone=no" name="format-detection">
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="/Public/css/public2.css">
+        <link rel="stylesheet" type="text/css" href="/Public/css/base2.css">
+        <script src="/Public/js/jquery.min.js"></script>
+
+    </head>
+
+        <body>
+		<div class="er-box pl15 pr15" id="tip" style="display: none; text-align:center;"></div>
+        <div class="appBody">
+        <div class="main-new flex1" >
+        <div class="pt40 f28px ml15 mr15 line-h50 mt20">
+        <ul id="list">
+		<li></li>
+        <li>订单编号:<span>{$corderno}</span></li>
+        <li>商品名称:<span>{$cname}</span></li>
+        <li>商品数量:<span>1</span></li>
+        </ul>
+        </div>
+
+        <div class="bingd-box ml15 mr15 pos-r" style="padding-top:25px">
+        
+
+    <form method="post" action="/Wxchat/Business/busiScan2" id="frm1" name="frm1">
+        <input type="text" placeholder="请输入商家号" class="pl10 pr10 bradius3 f32px" name="business_id" id="shangjh"/>
+		<input type="hidden" value="3333" name="bbbbb"/>
+		<input type="hidden" value="{$corderno}" name="corderno"/>
+		<input type="hidden" value="{$userid}" name="userid"/>
+        <input type="hidden" value="{$cstatus}" name="cstatus"/>
+        <input type="hidden" value="{$cname}"  name="cname"/>
+        <input type="hidden" value="{$cpoints}" name="cpoints"/>
+    </form>
+
+        <div class="clearfix bingd-btn mt20 f32px"><span class=" sure bradius3" id="sure">确定</span></div>
+
+        </div>
+
+        </div>
+        <div class="footer pt15 pb15 f30px">
+        <p class="pl15 pr15 f30px text-center">客服电话008837997</p></div>
+		
+        </div>
+        </div>
+        <script>
+        	$('input').keypress(function(e){
+				
+            if(e.keyCode==13){
+             e.preventDefault();
+            }
+			})
+				
+        </script>
+		
+		<script>
+			
+				$(function(){
+					$('#sure').click(function(){
+						var SJ = $('#shangjh').val();
+						$.ajax({
+							type:'post',
+							url:'/Wxchat/Active/business_ajax/rs/' + Math.random(),
+							data:{SJ:SJ},
+							success:function(result){
+								//alert(result);exit;
+								if(result=='0'){
+									$("#list").find('li:first').html('请输入商家号').css({"display":"block","color":"red"});
+								}
+								if(result=='1'){
+									$("#list").find('li:first').html('商家号不存在').css({"display":"block","color":"red"});
+
+								}if(result=='2'){
+									$("#list").find('li:first').html('该商家已被禁用！')
+										.css({"display":"block","color":"red"});
+								}
+								if(result == '3'){
+									document.frm1.submit();
+								}
+								return false;
+							}
+						});
+					});
+				});
+				
+				
+				
+		</script>
+</body>
+</html>

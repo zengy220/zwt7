@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>后台管理</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+<style type="text/css">
+.table th,.table td {text-align:left}
+</style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="/Home/User" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>首页</a><a href="/Home/User/menu_list" class="current">菜单列表</a> </div>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+	<?php
+	if($menu=="list")
+	{
+	?>
+	<div class="span11"><a href="/Home/User/menu_add/" class="btn btn-success btn">新增菜单</a>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>数据</h5>
+            </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th style="width:30px;">序号</th>
+                  <th>菜单标题</th>
+				  <th>等级</th>
+				  <th>上级目录</th>
+                  <th>菜单URL</th>
+                  <th>状态</th>
+				  <th>展示</th>
+				  <th>排序</th>
+				  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+			   <volist name="menu_list" id="vs">
+                <tr>
+                  <td>{$i}</td>
+				  <td>{$vs.menu_name}</td>
+                  <td>{$vs.menu_class_titile}</td>
+				  <td>{$vs.menu_class_up}</td>
+                  <td>{$vs.menu_url}</td>
+				  <td>{$vs.menu_status}</td>
+				  <td>{$vs.menu_show}</td>
+				  <td>{$vs.menu_sort}</td>
+				  <td>
+					<a href='<if condition="$vs.relation_Id eq 0  and $vs.relation_Id neq null">javascript:; <else/>/Home/User/menu_capacity/u/{$vs.menu_Id}</if>' class='<if condition="$vs.relation_Id eq 0  and $vs.relation_Id neq null">btn-inverse<else/> btn-success</if>  btn btn-mini'>功能</a> |
+					<a href="/Home/User/menu_set/u/{$vs.menu_Id}" class="btn btn-primary btn-mini">编辑</a> | 
+					<a href="/Home/User/menu_del/u/{$vs.menu_Id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除!')==false)return  false; ">删除</a>
+					
+				  </td>	  
+                </tr>
+				 </volist>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		  </div>
+
+	<?php
+	}
+	else
+	{
+	?>
+     <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>{$menu_title}</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="{$menu_from_url}" method="post" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">菜单名 :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="菜单名" name="menu_name" value="{$menu_data.menu_name}" style="width:220px;"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">层级 :</label>
+              <div class="controls">
+               <select name="relation_Id" id="relation_Id">
+                  <option value="0"></option>
+				  <foreach name="list" item="vo">
+				   <option value="{$vo.menu_Id}" <if condition=" $vo.menu_Id eq $menu_data.relation_Id ">selected</if> >{$vo.menu_name}</option>
+				  </foreach>
+                </select>(为空是一级目录)
+              </div>
+            </div>
+            <div class="control-group control-single" <if condition="$menu_data.menu_url eq '' ">style="display:none;"</if> >
+              <label class="control-label" name="manu_url">菜单URL</label>
+              <div class="controls" >
+                <input type="text"  class="span11" placeholder="菜单URL" name="menu_url" id="menu_url" value="{$menu_data.menu_url}"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">状态 :</label>
+              <div class="controls">
+			            <label>
+                  <input type="radio" name="menu_status" value='0' <if condition=" $menu_data.menu_status eq 0 ">checked</if>/>
+                  禁用</label>
+                <label>
+                  <input type="radio" name="menu_status" value='1' <if condition=" $menu_data.menu_status eq 1 ">checked</if>/>
+                  使用</label>
+   
+              </div>
+            </div>
+			<div class="control-group">
+              <label class="control-label">展示 :</label>
+              <div class="controls">
+			            <label>
+                  <input type="radio" name="menu_show" value='0' <if condition=" $menu_data.menu_show eq 0 ">checked</if>/>
+                  隐藏</label>
+                <label>
+                  <input type="radio" name="menu_show" value='1' <if condition=" $menu_data.menu_show eq 1 ">checked</if>/>
+                  显示</label>
+   
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" name="manu_or">排序:</label>
+              <div class="controls">
+                <input type="text" class="span2" placeholder="排序" name="menu_sort" value="{$menu_data.menu_sort}" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+             </div>
+            </div>
+			 <div class="control-group">
+              <label class="control-label" name="manu_or">验证码:</label>
+              <div class="controls" style="cursor:pointer;">
+              <input type="text" class="span2" name="verify"/><span><img src='__APP__/Home/User/verify/' onclick="this.src='/Home/User/verify/'+Math.random()" /></span> 
+			  </div>
+            </div>
+			<input type="hidden" name="u" value="{$menu_Id}" />
+			<input type="hidden" name="o" value="{$menu}" />
+			
+            <div class="form-actions" style="margin:0 180px;">
+              <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    <?php
+	}
+	?>
+  
+</div></div>
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+
+
+<script src="/Public/js/jquery.min.js"></script>
+<script src="/Public/js/client.js"></script>
+<script src="/Public/js/matrix.js"></script> 
+<script src="/Public/js/timepicker/WdatePicker.js"></script> 
+<script src="/Public/js/base.js"></script>
+
+
+</body>
+</html>

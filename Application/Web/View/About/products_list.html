@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>介贷网官网</title>
+<link href="/Public/web/css/common.css" rel="stylesheet" type="text/css" />
+<link href="/Public/web/css/style.css" rel="stylesheet" type="text/css" />
+<script src="/Public/web/js/jquery-1.11.1.min.js"></script>
+<script src="/Public/web/js/common.js"></script>
+</head>
+
+<body>
+   <include file="Index:header" />
+   
+   <!--banner-->
+   <div class="columnSpace">
+      <div  class="rel" <if condition="$adimg.img neq '' ">style="background:url({$adimg.img}) <else/>style="background:url(/Public/web/images/pro_banner.jpg) </if> no-repeat center center; width:100%; height:229px; ">
+     <a class="abs" style="width: 100%; height: 100%; z-index: 22;" href="{$adimg.url}"></a>
+     <div class="w1100 rel" style="height:229px">
+   <p class="abs" style="height:2px; width:100%; background:#a0232a; left:0; bottom:0"></p>
+   </div>
+   </div>
+   </div>
+   <!--banner-->
+   <div class="w1100">
+   <div class="box_main fn-clear">
+      <div class="box_main_sub fn-left">
+         <dl>
+            <dt><img src="{$pcolInfo.thumb}"></dt>
+            <foreach name ="sunCol" key="key" item="val"  >
+               <dd <if condition="$val.id eq $id">class="active"</if>  id="tags{$key+1}"   ><a href="{$val.col_url}/id/{$val.id}/ptpcode/{$ptpcode}"><span>{$val.name}</span> </a></dd>
+            </foreach>
+         </dl>
+      </div>
+   <div class="box_main_sub2 fn-right">
+    <div class="box-cont-sub color-99">您现在的位置：<a href="/{$Think.MODULE_NAME}/" class="color-99">首页</a> > {$pcolInfo.name} > <span class="color-a0">{$scolInfo.name}</span></div>
+   <ul class="fn-clear neswlist-box">
+      <volist name="productList" id="vo">
+         <li><a href="/{$Think.MODULE_NAME}/about/products_detail/id/{$id}/ptpcode/{$ptpcode}/pro_id/{$vo.id}"><img src="{$vo.thumb}"  width="208" height="204"/><p>{$vo.names}</p></a></li>
+      </volist>
+   </ul>
+      <div id="pageNav">{$show}</div>
+   </div>
+   
+   </div>
+   </div>
+   <include file="Index:footer" />
+   
+</body>
+</html>

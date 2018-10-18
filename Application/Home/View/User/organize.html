@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<title>营销系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+</head>
+<body>
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="javascript:;" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a href="#" class="tip-bottom">组织</a> <a href="#" class="current">{$menu_titles}</a> </div>
+  <!-- <h1>组织</h1> -->
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    
+
+	<?php
+	if($menu=="list")
+	{
+	?>
+	<div class="span11"><if condition="$jurisdiction.add eq 1"><a href="/staff/organize_at/set/add" class="btn btn-success btn">组织新增</a></if>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>组织</h5>
+            </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>编号</th>
+				  <th>组织名称</th>
+				  <th>员工</th>
+				  <th>业务号</th>
+				  <th>管理员账户</th>
+				  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			   <foreach name="organize_list" item="vs">
+                <tr>
+                  <td></td>
+				  <td>{$vs.organize_id}</td>
+                  <td>{$vs.organize_name}</td>
+                  <td>{$vs.organize_id|getcount=###,'staff'}</td>
+                  <td>{$vs.organize_id|getcount=###,'work_id'}</td>
+				  <td>{$vs.staff_user}</td>
+				  <td><if condition=" $vs.status eq 1 ">开启<else />禁止</if></td>
+				  <td>
+					<if condition="$jurisdiction.edit eq 1"><a href="/staff/organize_at/set/edit/setid/{$vs.organize_id}" class="btn btn-primary btn-mini">编辑</a> | </if>
+					<if condition="$jurisdiction.del eq 1">
+						<if condition="getcount($vs['organize_id'],'staff') gt 0 || getcount($vs['organize_id'],'work_id') gt 0"> <a href="javascript:;" class="btn btn-inverse btn-mini">删除</a><else /> <a href="/staff/organize_at/set/del/setid/{$vs.organize_id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除!')==false)return  false; ">删除</a></if>
+					</if>
+				  </td>	  
+                </tr>
+				 </foreach>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		  </div>
+
+	<?php
+	}
+	else
+	{
+	?>
+     <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>{$menu_titles}</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="{$menu_from_url}" method="post" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">组织名称 :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="组织名称" name="organize_name" value="{$organize_list[0]['organize_name']}"/>
+              </div>
+            </div>
+			 <div class="control-group">
+              <label class="control-label">状态:</label>
+              <div class="controls">
+			            <label>
+                  <input type="radio" name="organize_at" value='0' <if condition=" $organize_list[0]['status'] eq 0 ">checked</if> onclick="show_shuxing(this.value)"/>
+                  禁用</label>
+                <label>
+                  <input type="radio" name="organize_at" value='1' <if condition=" $organize_list[0]['status'] eq 1 ">checked</if> onclick="show_shuxing(this.value)"/>
+                  使用</label>
+   
+              </div>
+            </div>
+			<span id="shuxing" style="display:none;">
+              <div class="control-group">
+              <label class="control-label">管理员账户 :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="管理员账户" name="staff_user" value="{$organize_list[0]['staff_user']}"/>
+              </div>
+            </div>
+			  <div class="control-group">
+              <label class="control-label">密码 :</label>
+              <div class="controls">
+                <input type="password" class="span11" placeholder="密码" name="staff_pass" value="{$organize_list[0]['staff_pass']}"/>
+              </div>
+            </div>
+			</span>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">{$menu_titles_button}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+			<input type="hidden" id="zhuangtai" value="{$organize_list[0]['status']}">
+          </form>
+        </div>
+      </div>
+        <?php
+	}
+	?>
+  
+</div></div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<include file="Index:foot" />
+
+<!--end-Footer-part-->
+
+<script src="/Public/js/jquery.min.js"></script> 
+<script src="/Public/js/matrix.js"></script> 
+
+<script type="text/javascript">
+var selectValue2 = $("#zhuangtai").val();
+	if(selectValue2==1){
+		$('#shuxing').show();
+	}else{
+		$('#shuxing').hide();
+	}
+	 
+	function show_shuxing(type){
+		if(type==1){
+			$('#shuxing').show();
+		}else{
+			$('#shuxing').hide();
+		}
+	}
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

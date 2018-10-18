@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>介贷网后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="/{$Think.MODULE_NAME}/Advertise/ad_list" class="tip-bottom">广告位列表</a> <a href="#" class="current">增加广告位</a> </div>
+  <h1>广告位</h1>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    
+     <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>增加广告位</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="/{$Think.MODULE_NAME}/Advertise/ad_list_add" method="post" class="form-horizontal" onsubmit="return check();">
+            <div class="control-group">
+              <label class="control-label">名称:</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="请填写名称，不超过10个字" name="name" value="" id="name"  maxlength="11" style="width:200px;"/>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label">简码：</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="请填写英文+数字" name="simple_code" id="simple_code" style="width:200px;"/>
+              </div>
+            </div>
+           
+           <div class="control-group">
+              <label class="control-label">说明：</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="不超过20个字" name="illustration" id="illustration"style="width:200px;"/>
+              </div>
+            </div>
+          
+            <div class="form-actions" style="margin:0 180px;">
+              <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    
+  
+</div></div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+<!--end-Footer-part-->
+
+<script src="/Public/js/excanvas.min.js"></script> 
+<script src="/Public/js/jquery.min.js"></script> 
+
+<script type='text/javascript'>
+
+function check(){
+	var name=$("#name").val();
+	if(name==''){
+		alert("请填写名称");
+		return false;
+	}
+	
+	if(name.length>10){
+		alert("名称不能多于10个字");
+		return false;
+	}
+	
+	var simple_code=$("#simple_code").val();
+	if(simple_code==""){
+		alert("简码不能为空");
+		return false;
+		
+	}
+	
+	/*var strExp= /^[a-zA-Z0-9]*+$/;
+	if(!(strExp.test(simple_code))){
+		alert("简码必须是数字和字符的组合");
+		return false;
+	}
+	 */
+	var illustration=$("#illustration").val();
+	if(illustration==""){
+		alert("说明不能为空");
+		return false;
+		
+	}
+	
+	return true;
+	
+	
+	
+}	
+
+
+</script>  
+
+<script src="/Public/js/jquery.ui.custom.js"></script> 
+<script src="/Public/js/bootstrap.min.js"></script> 
+<script src="/Public/js/jquery.flot.min.js"></script> 
+<script src="/Public/js/jquery.flot.resize.min.js"></script> 
+<script src="/Public/js/jquery.peity.min.js"></script> 
+<script src="/Public/js/fullcalendar.min.js"></script> 
+<script src="/Public/js/matrix.js"></script> 
+<script src="/Public/js/matrix.dashboard.js"></script> 
+<script src="/Public/js/jquery.gritter.min.js"></script> 
+<script src="/Public/js/matrix.interface.js"></script> 
+<script src="/Public/js/matrix.chat.js"></script> 
+<script src="/Public/js/jquery.validate.js"></script> 
+<script src="/Public/js/matrix.form_validation.js"></script> 
+<script src="/Public/js/jquery.wizard.js"></script> 
+<script src="/Public/js/jquery.uniform.js"></script> 
+<script src="/Public/js/select2.min.js"></script> 
+<script src="/Public/js/matrix.popover.js"></script> 
+<script src="/Public/js/jquery.dataTables.min.js"></script> 
+<script src="/Public/js/matrix.tables.js"></script>
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+  
+</script>
+</body>
+</html>

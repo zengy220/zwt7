@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>介贷网后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"><a href="javascript:;" class="tip-bottom">广告位设置</a><a href="/{$Think.MODULE_NAME}/Advertise/ad_list" class="current">广告位列表</a></div>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+   
+	<div class="span11"><a href="/{$Think.MODULE_NAME}/Advertise/ad_list_add" class="btn btn-success btn " style="float: right">新增广告位</a>
+     <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>数据</h5>
+            </div>
+          <div class="widget-content ">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th style="width:30px;">序号</th>
+                  <th>名称</th>
+                  <th>简码</th>
+				  <th>广告数量</th>
+				  <th>说明</th>
+				  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+			 <volist name="ad_list" id="vs">
+                <tr>
+                  <td style="text-align:center;">{$i}</td>
+				  <td style="text-align:center;">{$vs.name}</td>
+				  <td style="text-align:center;">{$vs.simple_code}</td>
+				    <td style="text-align:center;"><if condition="$vs.sum_1 eq ''">0<else/>{$vs.sum_1}</if></td>
+                  <td style="text-align:center;">{$vs.illustration}</td>
+				  <td style="text-align:center;">
+					<a href="/{$Think.MODULE_NAME}/Advertise/ad_list_edit/ad_list_id/{$vs.id}" class="btn btn-primary btn-mini">修改</a> |
+					 <a href="/{$Think.MODULE_NAME}/Advertise/ad_list_del/ad_list_id/{$vs.id}" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除 {$vs.name}!')==false)return  false; ">删除</a>
+				  	</if>
+				  </td>	  
+                </tr>
+			</volist>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		  </div>
+  </div>
+</div></div>
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+<include file="Index:foot" />
+
+<!--end-Footer-part-->
+</script>
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/js/matrix.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>后台管理</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/font-awesome/css/font-awesome.css" />
+<style type="text/css">
+.login-img{
+display:block;
+margin:200px auto;
+text-align:center;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+  </div>
+<!--End-breadcrumbs-->
+<script type="text/javascript" language="javascript">   
+function iFrameHeight() {   
+var ifm= document.getElementById("iframepage");   
+var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+if(ifm != null && subWeb != null) {
+   ifm.height = subWeb.body.scrollHeight;
+   ifm.width = subWeb.body.scrollWidth;
+}   
+}   
+</script>
+<!-- 
+<iframe frameborder=0 width=1600 height=1000 marginheight=0 marginwidth=0 scrolling=yes src=http://m.24jd.com></iframe>
+-->
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="login-img">
+<img src="/Public/images/login.png" >
+</div>
+
+<!--end-Footer-part-->
+
+<script src="/Public/js/jquery.min.js"></script>
+<script src="/Public/js/matrix.js"></script> 
+</body>
+</html>

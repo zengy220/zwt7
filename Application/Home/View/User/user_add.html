@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>客服系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+<link rel="stylesheet" href="/Public/css/uniform.css" />
+<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+<style type="text/css">
+.user_identity option,.user_company option{
+    text-align: center;
+}
+.user_identity,.user_company {
+    width: 250px;
+    padding: 0 2%;
+    margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="javascript:;" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a href="/Home/User/user_list" class="tip-bottom">员工列表</a> <a href="" class="current">增加员工</a> </div>
+  <!-- <h1>用户</h1> -->
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    
+     <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>增加员工</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="/Home/User/user_add" method="post" class="form-horizontal" onsubmit="return check();">          
+      <div class="control-group">
+              <label class="control-label">姓名：</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="请填写真实姓名" name="real_name" id="real_name" style="width:250px;"/>
+              </div>
+            </div>
+      
+      <div class="control-group">
+              <label class="control-label">手机：</label>
+              <div class="controls">
+              <input type="text" class="span2" style="width:250px;"  placeholder="请填写手机号码"  name="tel" id="tel"/>
+        </div>
+            </div>
+      
+            <div class="control-group">
+              <label class="control-label">密码：</label>
+              <div class="controls">
+                <input type="password"  class="span11"  placeholder="密码必须是8到20位的数字和字母" name="password" id="password" style="width:250px;"/>
+              </div>
+            </div>
+                    
+      <div class="control-group">
+              <label class="control-label">所属组织：</label>
+              <div class="controls">
+               <select name="user_company"    onchange="kefu(this);kefu2(this)"  class="user_company">
+                  <option value="0">请选择</option>
+          <volist name="company" id="vo">
+          <option name="user_company" class="zz" data-zz="{$vo.company_id}"  value="{$vo.company_id}" >{$vo.company_name}</option>
+          </volist>
+         </select>
+              </div>
+            </div>
+
+         <div class="control-group control-single">
+              <label class="control-label">所属角色：</label>
+              <div class="controls">
+        <volist name='role' id='v' > 
+                <label>
+                  <input type="radio" class="role" data-kf="{$v.role_position}" onclick=""  name="role_id" value='{$v.role_Id}' />
+                  {$v.role_name}  
+                </label>
+              </volist>    
+              </div>
+            </div>
+
+
+      <div class="control-group control-role" style="display:none;" id= 'test'>     
+              <label class="control-label">所属客服：</label>
+                <div class="controls"> 
+                   <select name="real_name_to" class="user_company" id='scdslect'>
+                     <option value="0">请选择</option>
+                      
+                   </select>
+                </div>
+            </div>
+
+        <div class="control-group control-role" style="display:none;" id= 'test2'>     
+              <label class="control-label">所属区域经理：</label>
+                <div class="controls"> 
+                   <select name="real_name_to2" class="user_company" id='scdslect2'>
+                     <option value="0">请选择</option>
+                      
+                   </select>
+                </div>
+            </div>
+  
+            <div class="control-group">
+              <label class="control-label">账号状态：</label>
+              <div class="controls">
+           <label>
+          <input type="radio" name="is_use" value='1' checked /> 使用 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="is_use" value='0' /> 禁用 
+                 </label>                   
+              </div>
+            </div>
+          
+            
+            <div class="form-actions" style="margin:0 180px;">
+              <button type="submit" class="btn btn-success">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success" onclick="history.back();">返回</button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    
+  
+</div></div>
+<include file="Index:foot" />
+
+
+<script src="/Public/js/jquery.min.js"></script> 
+<script type='text/javascript'>
+//产生随机数 
+function GetRandomNum(Min,Max)
+{   
+  var Range = Max - Min;   
+  var Rand = Math.random();   
+  return(Min + Math.round(Rand * Range));   
+}   
+
+//随机业务号的生成
+function generate_number(){
+  
+  var str='cs';
+  var random_number=GetRandomNum(100000,999999);
+  str+=random_number;
+  $("#number").val(str);
+  
+}
+
+
+$(function(){
+  generate_number();
+});
+  
+    
+
+</script>
+<script>
+
+function check(){
+  var username=$("#username").val();
+  if(username==''){
+    alert("用户名不能为空");
+    return false;
+  }
+  
+  var password=$("#password").val();
+  if(password.match('^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$') != password){
+    alert("密码必须是8到20位的数字和字母");
+    return false;
+  } 
+
+  var real_name=$("#real_name").val();
+  if(real_name==""){
+    alert("请输入真实姓名");
+    return false;
+  }
+
+  
+  var tel=$("#tel").val();
+  if(tel.match('^1[0-9]{10}$') != tel){
+    alert("请输入正确的手机号码");
+    return false;
+  }
+  
+  var user_company=$(".user_company").val();
+  if(user_company == 0 || user_company == null){
+  
+    alert("请选择所属组织！");
+    return false;
+  }
+
+
+  return true;
+} 
+
+
+</script>
+<script>
+$(document).ready(function(){
+
+        $(".role").click(function(){ 
+            //|获取当前对象的 data id 属性值  
+            var a = $(this).attr("data-kf");  
+            if( a ==3 ){
+              $(".control-role").show();
+
+            }else{
+              $(".control-role").hide();
+            }
+        });  
+
+
+    
+
+});
+</script>
+<script>
+function kefu(t){
+  // alert(t.value);
+           $("#scdslect").empty();
+            $.ajax({        
+                type: "POST",
+                url: "/Home/User/ajax_kefu",
+                data: {"name":t.value},
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                    selecthtml = '';
+                    for (var i = 0; i < data.length; i++) {
+                    
+                        selecthtml  += "<option value='"+data[i].user_Id + "'>" +  data[i].real_name +"</option>";
+                    }
+                $("#scdslect").append(selecthtml);
+                }
+            });                      
+};
+//zy业务员绑定客服经理
+function kefu2(t){
+           $("#scdslect2").empty();
+            $.ajax({        
+                type: "POST",
+                url: "/Home/User/ajax_kefu2",
+                data: {"name":t.value},
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                    selecthtml = '';
+                    for (var i = 0; i < data.length; i++) {
+                    
+                        selecthtml  += "<option value='"+data[i].user_Id + "'>" +  data[i].real_name +"</option>";
+                    }
+                $("#scdslect2").append(selecthtml);
+                }
+            });                      
+};
+//zy业务员绑定客服经理end
+</script>
+<script src="/Public/js/matrix.js"></script> 
+</body>
+</html>

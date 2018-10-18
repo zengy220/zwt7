@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>后台管理系统</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/Public/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/Public/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="/Public/css/fullcalendar.css" />
+	<link rel="stylesheet" href="/Public/css/matrix-style.css" />
+	<link rel="stylesheet" href="/Public/css/matrix-media.css" />
+	<link rel="stylesheet" href="/Public/css/uniform.css" />
+	<link href="/Public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/Public/css/jquery.gritter.css" />
+	<style type="text/css">
+		.table th,.table td {text-align:left}
+	</style>
+
+</head>
+<body>
+
+<!--Header-part-->
+<include file="Index:menu" />
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+	<div id="content-header">
+		<div id="breadcrumb"> <a href="javascript:;" class="tip-bottom">菜单管理</a> <a href="#" class="current">菜单列表</a> </div>
+	</div>
+	<div class="container-fluid">
+		<hr>
+		<div class="row-fluid">
+
+			<div class="span11">
+				<div class="widget-box">
+					<div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+						<h5>选项列表</h5>
+					</div>
+					<div class="widget-content ">
+						<table class="table table-bordered table-striped with-check">
+							<thead>
+							<tr>
+								<th style="width:10%;">序号</th>
+								<th>选项名称</th>
+								<th>所属问题</th>
+								<th>所属问卷</th>
+								<th>排序</th>
+								<!-- <th>状态</th> -->
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+
+							<volist name="collist" id="vs">
+								<tr>
+									<td>{$i}</td>
+									<td>{$vs.name}</td>
+									<td>{$vs.question_name}</td>
+									<td>{$vs.questionnaire_name}</td>
+									<td>{$vs.sort}</td>
+									<!-- <td>{$vs.status}</td> -->
+									<td>
+										<a href="/{$Think.MODULE_NAME}/Questionsearch/option_add_index/u/{$vs.id}/o/edit/" class="btn btn-primary btn-mini">修改</a> |
+										<a href="/{$Think.MODULE_NAME}/Questionsearch/option_add_index/u/{$vs.id}/o/del/" class="btn btn-danger btn-mini" onclick= "if(confirm('是否确定删除{$vs.name}!')==false)return  false; ">删除</a>
+
+									</td>
+								</tr>
+							<input type="hidden" name="u" value="{$u}" />
+							</volist>
+								<tr>
+								  <td colspan="13" align="center" style="text-align:center;">
+									<?php echo $dataPage?> 
+								  </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div></div>
+	<!--end-main-container-part-->
+
+	<!--Footer-part-->
+	<include file="Index:foot" />
+	<!--end-Footer-part-->
+
+
+	<script src="/Public/js/jquery.min.js"></script>
+	<script src="/Public/js/client.js"></script>
+	<script src="/Public/js/matrix.js"></script>
+	<script src="/Public/js/timepicker/WdatePicker.js"></script>
+	<script src="/Public/js/base.js"></script>
+
+
+</body>
+</html>
