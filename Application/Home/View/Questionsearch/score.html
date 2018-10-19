@@ -88,7 +88,7 @@
                                     <td><if condition="$vs.all_property eq null">无<else />{$vs.all_property}</if></td>
                                     <td>{$vs.all_score}</td>
                                     <td>{$vs.count_property}</td>
-         
+                                    <td><?php  echo date("Y-m-d",$vs['create_time']);?></td>
                                     <td>{$vs.count_score}</td>
                                     <td> <a href="/{$Think.MODULE_NAME}/Answer/index/questionnaire_id/{$vs.questionnaire_id}/user_id/{$vs.user_id}" class="btn btn-primary btn-mini">答题详情</a> </td>
 

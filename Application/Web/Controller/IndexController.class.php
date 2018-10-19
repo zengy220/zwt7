@@ -57,37 +57,25 @@ class IndexController extends CommonController
 
     	if(!empty($_POST)){
     		$data = $_POST;
-    		var_dump($data);
-            echo "<br>1111";
-
     		//统计答题问题个数
     		$count = count($data);
     		//取键名和键值
     		$option_key = array_keys($data);
     		$option_values = array_values($data);
+            //用变量替换数字（将名字年龄电话剔除）
+            $number = 3;
+    		$question_id=array_splice($option_key,$number,$count);
 
-    		$question_id=array_splice($option_key,0,$count-3);
-    		$question_values=array_splice($option_values,0,$count-3);
+    		$question_values=array_splice($option_values,$number,$count);
     		//取键值
-            echo "<br>333";
-            var_dump($data);
-            echo "<br>333";
     		$content = array_splice($data,3,$count);
-    		//如果成功则插入到用户信息白哦中
-            echo "<br>222";
-            var_dump($data);
-            echo "<br>222";
-
-            echo "<br>444";
-            var_dump($content);
-            echo "<br>444";
-
+    		//如果成功则插入到用户信息表中
 				$user_data['user_name'] = $data['user_name'];
 				$user_data['age'] = $data['age'];
 				$user_data['phone'] = $data['phone'];
 				$user_data['create_time'] = time();
 				$user_info = M('que_user')->add($user_data);
-                var_dump(M()->getlastsql());exit;
+                
 				$user_id =$user_info;
 
 				if($user_info){
@@ -118,14 +106,6 @@ class IndexController extends CommonController
     	}
     	
     }
-
-
-    //通用版的显示不包含（气虚+血虚）、（寒+阳虚）、（气滞+血瘀）的统计
-    // public function question_score(){
-    // 	// var_dump(I());exit;
-    // 	$this->display();
-    // }
-
 
     public function question_score(){
     	$user_id=I('user_id');
@@ -234,8 +214,7 @@ class IndexController extends CommonController
 	    	$where_w['question_id']=C('TWO_WEIGHT_ID');
 	    	$bmi['weight'] = M('user_answer')->field('id,content')->where($where_w)->find();
 
-	    	$score_data['bmi']=$this->BMI($bmi['height']['content'],$bmi['weight']['content']);
-
+            $score_data['bmi']=$this->BMI($bmi['height']['content'],$bmi['weight']['content']);
 
     		$question_score['bmi']=$score_data['bmi'];
 
@@ -287,15 +266,8 @@ class IndexController extends CommonController
 
 
 
-
-  // public function __construct($appId, $appSecret) {
-  //   $this->appId = C('APPID');
-  //   $this->appSecret = C('appSecret');
-  // }
-
   public function getSignPackage() {
     $jsapiTicket = $this->getJsApiTicket();
-    // var_dump(C('appId'));exit;
     // 注意 URL 一定要动态获取，不能 hardcode.
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -334,7 +306,6 @@ class IndexController extends CommonController
     if ($data->expire_time < time()) {
       $accessToken = $this->getAccessToken();
       // 如果是企业号用以下 URL 获取 ticket
-      // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
       $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
       $res = json_decode($this->httpGet($url));
       $ticket = $res->ticket;
@@ -355,7 +326,6 @@ class IndexController extends CommonController
     $data = json_decode($this->get_php_file("access_token.php"));
     if ($data->expire_time < time()) {
       // 如果是企业号用以下URL获取access_token
-      // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
       $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".C('appId')."&secret=".C('appSecret')."";
       $res = json_decode($this->httpGet($url));
       $access_token = $res->access_token;

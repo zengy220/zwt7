@@ -143,7 +143,7 @@
                                                 <input name="-" type="radio" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
                                                 <div>
                                                     <input type="text" value="<?php echo ($item["text"]); ?>" class="form-control" placeholder="请输入选项文本" />
-                                                    <img class="option-del" src="/Public/Images/btn-del.png" title="删除该选项">
+                                                    <img class="option-del" src="/Public/img/btn-del.png" title="删除该选项">
                                                 </div>
                                             </div><?php break;?>
 
@@ -151,13 +151,13 @@
                                                 <input type="checkbox" <?php if(isset($standardList[$i-1]))echo 'checked' ?> />
                                                 <div>
                                                     <input type="text" value="<?php echo ($item["text"]); ?>" class="form-control" placeholder="请输入选项文本" />
-                                                    <img class="option-del" src="/Public/Images/btn-del.png" title="删除该选项">
+                                                    <img class="option-del" src="/Public/img/btn-del.png" title="删除该选项">
                                                 </div>
                                             </div><?php break;?>
 
                                         <?php case "text": ?><div class="option-item text_option">
                                                 <textarea class="form-control"><?php echo (unicodedecode($standardList)); ?></textarea>
-                                                <img class="option-del" src="/Public/Images/btn-del.png" title="删除该选项">
+                                                <img class="option-del" src="/Public/img/btn-del.png" title="删除该选项">
                                             </div><?php break;?>
 
                                         <?php case "radio_othertext": ?><div class="option-item radio_othertext_option">
@@ -165,7 +165,7 @@
                                                 <div>
                                                     <strong style="position: absolute;line-height: 25px;">其他：</strong>
                                                     <input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo unicodeDecode($standardList[$i-1]) ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
-                                                    <img class="option-del" src="/Public/Images/btn-del.png" title="删除该选项">
+                                                    <img class="option-del" src="/Public/img/btn-del.png" title="删除该选项">
                                                 </div>
                                             </div><?php break;?>
 
@@ -174,7 +174,7 @@
                                                 <div>
                                                     <strong style="position: absolute;line-height: 25px;">其他：</strong>
                                                     <input style="margin-left:40px;opacity: <?php if($questionnaire['type']=='exam')echo '1';else echo '0.3'; ?>;" type="text" class="form-control" value="<?php if(isset($standardList[$i-1]))echo unicodeDecode($standardList[$i-1]) ?>" <?php if($questionnaire['type']!='exam')echo 'disabled'; ?> />
-                                                    <img class="option-del" src="/Public/Images/btn-del.png" title="删除该选项">
+                                                    <img class="option-del" src="/Public/img/btn-del.png" title="删除该选项">
                                                 </div>
                                             </div><?php break; endswitch; endforeach; endif; else: echo "" ;endif; ?>
                             </div>
@@ -249,7 +249,7 @@
     <script type="text/javascript" src="/Public/Admin/Plugins/ui-frame/actions.js"></script>
     <script type="text/javascript" src="/Public/Admin/Plugins/dropzone/dropzone.js"></script>
     <script type="text/javascript" src="/Public/Admin/Plugins/dropzone/dropzone.js"></script>
-    <script type="text/javascript" src="/Public/Admin/js/Admin/questions-optionManager.js"></script>
+    <script type="text/javascript" src="/Public/js/questions-optionManager.js"></script>
 
 
     <script type="text/javascript">

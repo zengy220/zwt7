@@ -213,7 +213,6 @@ function checkProblemContent(index)
     
     <?php if(is_array($option_middle)): foreach($option_middle as $k=>$ve): ?><div class="swiper-slide">
 	  <div class="kcks_title_ts problem_box  " date-title="2" date-last="0">
-	    <!-- <h4 class=" kctm_zzbt"><?php echo ($ve[0]['question_sort']); ?>.<?php echo ($ve[0]['question_name']); ?></h4> -->
 	    <h4 class=" kctm_zzbt"><?php echo ($ve['number']); ?>.<?php echo ($ve[0]['question_name']); ?></h4>
 	    <ul class="dxt_box">
 	    	<?php if(is_array($ve)): foreach($ve as $key=>$vo): ?><li >
@@ -223,7 +222,7 @@ function checkProblemContent(index)
 		    					<input type="radio" name="<?php echo ($vo['question_id']); ?>" value ="<?php echo ($vo['id']); ?>" >
 	    						<span style="float: none;display: inline-block;"><?php echo ($vo['name']); ?></span>
 	    					</div><?php endif; ?>
-	    				<?php if($vo["question_type"] == 3): ?><input type="text"  name="<?php echo ($vo['question_id']); ?>" value="" />
+	    				<?php if($vo["question_type"] == 3): ?><input type="text" autofocus="autofocus"  name="<?php echo ($vo['question_id']); ?>" value="" />
 	    					<span style="float: none;display: inline-block;"><?php echo ($vo['name']); ?></span><?php endif; ?>
 
 	    				
@@ -237,6 +236,7 @@ function checkProblemContent(index)
 	</div><?php endforeach; endif; ?>
     <div class="swiper-slide">
     	<div class="kcks_title_ts last  problem_box"  date-title="2" date-last="1">
+    	<br/>
 		<label class="dxt_box">姓名:</label>
           <div class="dxt_box">
             <input type="text" class="span11"  name="user_name" value="" id="user_name"  style="width:200px;"/>
@@ -253,21 +253,8 @@ function checkProblemContent(index)
     </div>
     </div>
         </div>
-
-    
-
-
-
-	<!-- <div class="kcks_title_ts hide"  date-title="2" date-last="0">
-		<h4 class="kctm_zzbt" name='question_name' value='<?php echo ($option_last[0]['question_id']); ?>'><?php echo ($option_last[0]['question_name']); ?></h4>
-		<ul class="dxt_box">
-		  <?php if(is_array($option_last)): foreach($option_last as $key=>$vo): ?><li name='option' value="<?php echo ($vo['id']); ?>"> <em></em><span><?php echo ($vo['name']); ?></span> </li> -->
-	      		<!-- <input type="radio" name="option" value="<?php echo ($vo['id']); ?>"><?php echo ($vo['name']); ?> -->
-	    	<!--<?php endforeach; endif; ?> -->
-		<!-- </ul> -->
-	<!-- </div> -->   
 </div>
-<!-- <input type="button" name="Submit" value="" onclick="submit1(this.form);" />   -->
+
 <!--结束------------------------------------------>
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj_zuotm">提交选择</a> </div>
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj">上一题</a> </div>

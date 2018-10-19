@@ -150,7 +150,7 @@
                                     <td><?php if($vs["all_property"] == null): ?>无<?php else: echo ($vs["all_property"]); endif; ?></td>
                                     <td><?php echo ($vs["all_score"]); ?></td>
                                     <td><?php echo ($vs["count_property"]); ?></td>
-         
+                                    <td><?php  echo date("Y-m-d",$vs['create_time']);?></td>
                                     <td><?php echo ($vs["count_score"]); ?></td>
                                     <td> <a href="/<?php echo (MODULE_NAME); ?>/Answer/index/questionnaire_id/<?php echo ($vs["questionnaire_id"]); ?>/user_id/<?php echo ($vs["user_id"]); ?>" class="btn btn-primary btn-mini">答题详情</a> </td>
 

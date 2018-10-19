@@ -214,7 +214,6 @@ function checkProblemContent(index)
     <foreach name="option_middle" item="ve" key="k">
     	<div class="swiper-slide">
 	  <div class="kcks_title_ts problem_box  " date-title="2" date-last="0">
-	    <!-- <h4 class=" kctm_zzbt">{$ve[0]['question_sort']}.{$ve[0]['question_name']}</h4> -->
 	    <h4 class=" kctm_zzbt">{$ve['number']}.{$ve[0]['question_name']}</h4>
 	    <ul class="dxt_box">
 	    	<foreach name="ve" item="vo" >
@@ -229,7 +228,7 @@ function checkProblemContent(index)
 	    				</if>
 	    				<if condition="$vo.question_type eq 3">
 
-					        <input type="text"  name="{$vo['question_id']}" value="" />
+					        <input  type="text" name="{$vo['question_id']}" value="" />
 	    					<span style="float: none;display: inline-block;">{$vo['name']}</span>
 		    			</if>
 
@@ -247,9 +246,10 @@ function checkProblemContent(index)
     </foreach>
     <div class="swiper-slide">
     	<div class="kcks_title_ts last  problem_box"  date-title="2" date-last="1">
+    	<br/>
 		<label class="dxt_box">姓名:</label>
           <div class="dxt_box">
-            <input type="text" class="span11"  name="user_name" value="" id="user_name"  style="width:200px;"/>
+            <input type="text" class="span11"   name="user_name" value="" id="user_name"  style="width:200px;"/>
           </div>
         <label class="dxt_box">年龄:</label>
           <div class="dxt_box">
@@ -263,26 +263,13 @@ function checkProblemContent(index)
     </div>
     </div>
         </div>
-
-    
-
-
-
-	<!-- <div class="kcks_title_ts hide"  date-title="2" date-last="0">
-		<h4 class="kctm_zzbt" name='question_name' value='{$option_last[0]['question_id']}'>{$option_last[0]['question_name']}</h4>
-		<ul class="dxt_box">
-		  <foreach name="option_last" item="vo">
-	      		<li name='option' value="{$vo['id']}"> <em></em><span>{$vo['name']}</span> </li> -->
-	      		<!-- <input type="radio" name="option" value="{$vo['id']}">{$vo['name']} -->
-	    	<!-- </foreach> -->
-		<!-- </ul> -->
-	<!-- </div> -->   
 </div>
-<!-- <input type="button" name="Submit" value="" onclick="submit1(this.form);" />   -->
+
 <!--结束------------------------------------------>
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj_zuotm">提交选择</a> </div>
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj">上一题</a> </div>
 </form>
+	
 	<script type="text/javascript">
 	   $(".divdan").click(function(){
 	        if($(this).find("input").attr("checked")==undefined){
@@ -297,10 +284,7 @@ function checkProblemContent(index)
 		
 	</script>
 	
-	<script>
 
-
-	</script>
 
 
 </body>
