@@ -79,7 +79,7 @@ class IndexController extends CommonController
                 $new =M("que_user")->where($where_new)->find();
                 if(!empty($new)){
                     if($new['user_name']==$data['user_name']&&$new['age']==$data['age']){
-                       $this->error('正在返回首页','/web/index/start/questionnaire_id/32');exit;
+                       $this->error('您已经提交过一次了，正在返回首页','/web/index/start/questionnaire_id/32');exit;
                     }
                 }
 				$user_info = M('que_user')->add($user_data);
