@@ -562,6 +562,7 @@ class QuestionsearchController extends CommonController {
 			}
 		}
 		//所占比例
+		$bear[a] =$bear[a]+1;
 		$bear_proportion[a]=round($bear[a]/$all_numbers*100)."%";
 		$bear_proportion[b]=round($bear[b]/$all_numbers*100)."%";
 		$bear_proportion[c]=round($bear[c]/$all_numbers*100)."%";

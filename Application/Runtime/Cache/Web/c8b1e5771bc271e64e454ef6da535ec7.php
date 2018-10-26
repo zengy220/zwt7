@@ -222,7 +222,7 @@ function checkProblemContent(index)
 		    					<input type="radio" name="<?php echo ($vo['question_id']); ?>" value ="<?php echo ($vo['id']); ?>" >
 	    						<span style="float: none;display: inline-block;"><?php echo ($vo['name']); ?></span>
 	    					</div><?php endif; ?>
-	    				<?php if($vo["question_type"] == 3): ?><input type="text" autofocus="autofocus"  name="<?php echo ($vo['question_id']); ?>" value="" />
+	    				<?php if($vo["question_type"] == 3): ?><input  type="text" name="<?php echo ($vo['question_id']); ?>" value="" />
 	    					<span style="float: none;display: inline-block;"><?php echo ($vo['name']); ?></span><?php endif; ?>
 
 	    				
@@ -239,7 +239,7 @@ function checkProblemContent(index)
     	<br/>
 		<label class="dxt_box">姓名:</label>
           <div class="dxt_box">
-            <input type="text" class="span11"  name="user_name" value="" id="user_name"  style="width:200px;"/>
+            <input type="text" class="span11"   name="user_name" value="" id="user_name"  style="width:200px;"/>
           </div>
         <label class="dxt_box">年龄:</label>
           <div class="dxt_box">
@@ -259,6 +259,7 @@ function checkProblemContent(index)
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj_zuotm">提交选择</a> </div>
 <div class="kasj_db_but "> <a href="javascript:void(0)" class="tj">上一题</a> </div>
 </form>
+	
 	<script type="text/javascript">
 	   $(".divdan").click(function(){
 	        if($(this).find("input").attr("checked")==undefined){
@@ -273,10 +274,7 @@ function checkProblemContent(index)
 		
 	</script>
 	
-	<script>
 
-
-	</script>
 
 
 </body>

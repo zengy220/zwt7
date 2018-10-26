@@ -225,11 +225,18 @@ class IndexController extends CommonController
             $score_data['bmi']=$this->BMI($bmi['height']['content'],$bmi['weight']['content']);
 
     		$question_score['bmi']=$score_data['bmi'];
+            //查询user_id 如果user_id已经存在就不再添加了
+            $where_new['user_id']=$user_id;
+            $new = M('score')->where($where_new)->find();
+            if(empty($new)){
+                $score_res = M('score')->add($score_data);
+            }
 
-    		if(!empty($score_data['age'])&&$my_score_data['all_score']!=$score_data['all_score']&&$my_score_data['phone']!=$score_data['phone']){
+
+    		// if(!empty($score_data['age'])&&$my_score_data['all_score']!=$score_data['all_score']&&$my_score_data['phone']!=$score_data['phone']){
     			
-	    		$score_res = M('score')->add($score_data);
-    		}
+	    	// 	$score_res = M('score')->add($score_data);
+      //       }
 
     	}
 
